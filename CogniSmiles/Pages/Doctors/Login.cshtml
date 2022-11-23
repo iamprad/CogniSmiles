@@ -1,0 +1,71 @@
+﻿@page
+@model CogniSmiles.Pages.Doctors.LoginModel
+
+@{
+    ViewData["Title"] = "Dentist Login";
+}
+
+<h1>Dentist Login</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <table>
+                <tr>
+                    <td colspan="2" class="d-table-cell">
+                        <h4> Login Details </h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="DoctorLogin.UserName" class="control-label"></label>
+                            <input asp-for="DoctorLogin.UserName" class="form-control" />
+                            <span asp-validation-for="DoctorLogin.UserName" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                           <label class="col-form-label"> This is usually an email address used when registered with our website </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="DoctorLogin.Password" class="control-label"></label>
+                            <input asp-for="DoctorLogin.Password" class="form-control" type="password" />
+                            <span asp-validation-for="DoctorLogin.Password" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label class="col-form-label"> Please provide password used when registered with our website  </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </td>
+                </tr>
+                @if(ViewData["LoginError"] != null)
+                {
+                    <tr>
+                        <td colspan="2" align="center">
+                            <div class="form-group">
+                                <label class="col-form-label"> @ViewData["LoginError"]?.ToString() </label>
+                            </div>
+                        </td>
+                    </tr>
+                }                
+            </table>            
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

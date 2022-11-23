@@ -1,0 +1,50 @@
+﻿@page
+@model CogniSmiles.Pages.Doctors.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Doctor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Doctor.Id" />
+            <div class="form-group">
+                <label asp-for="Doctor.FullName" class="control-label"></label>
+                <input asp-for="Doctor.FullName" class="form-control" />
+                <span asp-validation-for="Doctor.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.PracticeName" class="control-label"></label>
+                <input asp-for="Doctor.PracticeName" class="form-control" />
+                <span asp-validation-for="Doctor.PracticeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.Phone" class="control-label"></label>
+                <input asp-for="Doctor.Phone" class="form-control" />
+                <span asp-validation-for="Doctor.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.Email" class="control-label"></label>
+                <input asp-for="Doctor.Email" class="form-control" />
+                <span asp-validation-for="Doctor.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

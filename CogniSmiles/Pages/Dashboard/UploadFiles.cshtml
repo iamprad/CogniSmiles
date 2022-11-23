@@ -1,0 +1,40 @@
+﻿@page
+@using CogniSmiles.Models
+@model CogniSmiles.Pages.Dashboard.UploadFilesModel
+@{
+    ViewData["Title"] = "Upload Files Patient Record";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="PatientFile.FileType" class="control-label" />
+                <select asp-for="PatientFile.FileType" class="form-control" asp-items="Html.GetEnumSelectList<FileType>()">               
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PatientFile.FileName" class="control-label" />
+                <input asp-for="PatientFile.FileName" type="file" class="form-control" />
+                <button type="submit" class="btn-success">Upload File</button>
+                @if (ViewBag.UploadStatus != null)
+                {
+                    <div class="alert" style="margin-top:20px">
+                        @ViewBag.UploadStatus
+                    </div>
+                }
+            </div>           
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Home">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,105 @@
+﻿@page
+@model CogniSmiles.Pages.Dashboard.HomeModel
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">       
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard/Home">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard/MyAccount">My Account</a>
+                </li>               
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h1>List of Patient Records</h1>
+<p>
+    <a asp-page="./NewPatient">Add New Patient Record</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].SurgicalGuideWrittenDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].ImplantSite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].ImplantSystem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].ImplantDiameter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].InmplantLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].DicomFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].StlIosFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].PatientStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patient[0].Comments)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Patient) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SurgicalGuideWrittenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImplantSite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImplantSystem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImplantDiameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InmplantLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DicomFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StlIosFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                <a asp-page="./EditPatient" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./PatientDetails" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./UploadFiles" asp-route-id="@item.Id">Upload Files</a>
+                <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

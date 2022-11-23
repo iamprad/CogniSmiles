@@ -1,0 +1,35 @@
+﻿@page
+@model CogniSmiles.Pages.Doctors.ActivationModel
+
+@{
+    ViewData["Title"] = "Activation";
+}
+
+<h1>Activation Page</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if(Model.DoctorEmail != null)
+        {
+            if (Model.UserId == null)
+            {
+            <h3>
+                Please follow the instruction in your activation email <b>@Model.DoctorEmail</b> which has been sent to your registred email address
+            </h3>
+            }
+            else
+            {
+            <h3>
+                Your email address <b>@Model.DoctorEmail</b> is activated now. Please follow instructions on Sign In page.
+            </h3>
+            }
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
