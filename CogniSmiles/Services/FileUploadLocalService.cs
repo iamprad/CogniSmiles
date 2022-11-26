@@ -6,19 +6,20 @@ namespace CogniSmiles.Services
 {
     public class FileUploadLocalService : IFileUploadService
     {
+        public string? FilePath { get; set; }
         public async Task<bool> UploadFile(IFormFile file)
         {
-            string path = "";
+            
             try
             {
                 if (file.Length > 0)
                 {
-                    path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "UploadedFiles"));
-                    if (!Directory.Exists(path))
+                    FilePath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "UploadedFiles"));
+                    if (!Directory.Exists(FilePath))
                     {
-                        Directory.CreateDirectory(path);
+                        Directory.CreateDirectory(FilePath);
                     }
-                    using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
+                    using (var fileStream = new FileStream(Path.Combine(FilePath, file.FileName), FileMode.Create))
                     {
                         await file.CopyToAsync(fileStream);
                     }

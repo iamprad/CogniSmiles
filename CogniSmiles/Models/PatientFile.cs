@@ -7,7 +7,7 @@
         public string? FileName { get; set; } 
         public FileType FileType { get; set; }
         public string? FilePath { get; set; }
-        public string? DateUploaded { get; set; }
+        public DateTime DateUploaded { get; set; }
     }
     public enum FileType
     {

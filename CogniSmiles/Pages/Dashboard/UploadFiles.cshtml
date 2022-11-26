@@ -2,28 +2,71 @@
 @using CogniSmiles.Models
 @model CogniSmiles.Pages.Dashboard.UploadFilesModel
 @{
-    ViewData["Title"] = "Upload Files Patient Record";
+    ViewData["Title"] = "View / Upload Files Patient Record";
 }
 
-<h1>@ViewData["Title"]</h1>
-
+<h1>View Files for Patient Record - @Model.NewPatientFile.PatientId </h1>
 <hr />
+<h1>List of Patient Records</h1>
+<p>
+    <a asp-page="./NewPatient">Add New Patient Record</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientFiless[0].FileType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientFiless[0].FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientFiless[0].DateUploaded)
+            </th>          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PatientFiless)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUploaded)
+                </td>                
+                <td>
+                    <a asp-page="./EditPatientFile" asp-route-id="@item.Id">Edit</a> |                                        
+                    <a asp-page="./DeletePatientFile" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h1>Upload Files for Patient Record - @Model.NewPatientFile.PatientId </h1>
+<hr/>
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label asp-for="PatientFile.FileType" class="control-label" />
-                <select asp-for="PatientFile.FileType" class="form-control" asp-items="Html.GetEnumSelectList<FileType>()">               
+                <label asp-for="NewPatientFile.FileType" class="control-label" />
+                <select asp-for="NewPatientFile.FileType" class="form-control" asp-items="Html.GetEnumSelectList<FileType>()">
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="PatientFile.FileName" class="control-label" />
-                <input asp-for="PatientFile.FileName" type="file" class="form-control" />
+                <label asp-for="NewPatientFile.FileName" class="control-label" />
+                <input asp-for="Upload" type="file" class="form-control" />
                 <button type="submit" class="btn-success">Upload File</button>
-                @if (ViewBag.UploadStatus != null)
+                @if (ViewData["UploadStatus"] != null)
                 {
                     <div class="alert" style="margin-top:20px">
-                        @ViewBag.UploadStatus
+                        @ViewData["UploadStatus"]
                     </div>
                 }
             </div>           
