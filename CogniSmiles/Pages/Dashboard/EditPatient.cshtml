@@ -1,4 +1,5 @@
 ﻿@page
+@using CogniSmiles.Models
 @model CogniSmiles.Pages.Dashboard.EditPatient
 
 @{
@@ -42,25 +43,15 @@
                 <label asp-for="Patient.InmplantLength" class="control-label"></label>
                 <input asp-for="Patient.InmplantLength" class="form-control" />
                 <span asp-validation-for="Patient.InmplantLength" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.DicomFile" class="control-label"></label>
-                <input asp-for="Patient.DicomFile" class="form-control" />
-                <span asp-validation-for="Patient.DicomFile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.StlIosFile" class="control-label"></label>
-                <input asp-for="Patient.StlIosFile" class="form-control" />
-                <span asp-validation-for="Patient.StlIosFile" class="text-danger"></span>
-            </div>
+            </div>            
             <div class="form-group">
                 <label asp-for="Patient.PatientStatus" class="control-label"></label>
-                <select asp-for="Patient.PatientStatus" class="form-control"></select>
+                <select asp-for="Patient.PatientStatus" class="form-control" asp-items="Html.GetEnumSelectList<PatientStatus>()"></select>
                 <span asp-validation-for="Patient.PatientStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Patient.Comments" class="control-label"></label>
-                <textarea asp-for="Patient.Comments" class="form-control" />
+                <textarea asp-for="Patient.Comments" class="form-control" ></textarea>
                 <span asp-validation-for="Patient.Comments" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -71,7 +62,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Home">Back to List</a>
 </div>
 
 @section Scripts {

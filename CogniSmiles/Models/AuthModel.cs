@@ -1,37 +1,33 @@
-﻿
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
 namespace CogniSmiles.Models
 {
-    public class AuthModel
-    {
-        private readonly ISession _currentContext;
-        public AuthModel(ISession currentContext)
-        {
-            _currentContext = currentContext;
-        }
+    public class AuthModel : PageModel
+    {       
         private bool isAuthenticated;
-
         private int doctorId;
         public bool IsAuthenticated { 
             get {     
+                
                 if(!isAuthenticated)
-                    isAuthenticated = Convert.ToBoolean(_currentContext.GetString("isAuthenticated"));
+                    isAuthenticated = Convert.ToBoolean(PageContext.HttpContext.Session.GetString("isAuthenticated"));
                 return isAuthenticated; 
             } 
             set {
                 isAuthenticated = value;
-                _currentContext.SetString("isAuthenticated", value.ToString());
+                PageContext.HttpContext.Session.SetString("isAuthenticated", value.ToString());
             } 
         }
         public int DoctorId
         {
             get {
                 if (doctorId == 0)
-                    doctorId = (int)_currentContext.GetInt32("doctorId");
+                    doctorId = (int)PageContext.HttpContext.Session.GetInt32("doctorId");
                 return doctorId;
             }
             set {
                 doctorId = value;
-                _currentContext.SetInt32("doctorId", value);
+                PageContext.HttpContext.Session.SetInt32("doctorId", value);
             }
         }
     }

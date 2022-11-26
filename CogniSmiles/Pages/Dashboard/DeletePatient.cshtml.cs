@@ -6,7 +6,7 @@ using CogniSmiles.Models;
 
 namespace CogniSmiles.Pages.Dashboard
 {
-    public class DeletePatientModel : PageModel
+    public class DeletePatientModel : AuthModel
     {
         private readonly CogniSmilesContext _context;
 
@@ -20,7 +20,7 @@ namespace CogniSmiles.Pages.Dashboard
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Patient == null)
+            if (!IsAuthenticated && (id == null || _context.Patient == null))
             {
                 return NotFound();
             }
@@ -53,7 +53,7 @@ namespace CogniSmiles.Pages.Dashboard
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Home");
         }
     }
 }

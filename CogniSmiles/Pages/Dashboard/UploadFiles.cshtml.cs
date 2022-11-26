@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CogniSmiles.Pages.Dashboard
 {
-    public class UploadFilesModel : PageModel
+    public class UploadFilesModel : AuthModel
     {
-        private readonly CogniSmilesContext _context;
-        private AuthModel _authModel;
+        private readonly CogniSmilesContext _context;        
         private readonly IFileUploadService _fileUploadService;
+        [BindProperty(SupportsGet = true)]
+        public int Id { get; set; }
         public IList<PatientFile> PatientFiless { get; set; }
         public UploadFilesModel(CogniSmilesContext context, IFileUploadService fileUploadService)
         {
@@ -23,11 +24,11 @@ namespace CogniSmiles.Pages.Dashboard
 
         public async Task<IActionResult> OnGetAsync()
         {
-            // Authorize 
-            _authModel = new AuthModel(HttpContext.Session);
-            if (!_authModel.IsAuthenticated)
+            // Authorize             
+            if (!IsAuthenticated)
                 return NotFound();
-            PatientFiless = await _context.PatientFile.Where(file => file.PatientId == NewPatientFile.PatientId).ToListAsync();
+           
+            PatientFiless = await _context.PatientFile.Where(file => file.PatientId == Id).ToListAsync();
             return Page();
         }
         
@@ -40,8 +41,7 @@ namespace CogniSmiles.Pages.Dashboard
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            // Authorize 
-            _authModel = new AuthModel(HttpContext.Session);
+            // Authorize            
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -52,7 +52,7 @@ namespace CogniSmiles.Pages.Dashboard
                 if (await _fileUploadService.UploadFile(Upload))
                 {
                     ViewData["UploadStatus"] = "File Upload Successful";
-
+                    NewPatientFile.PatientId = Id;
                     NewPatientFile.FileName = Upload.FileName;
                     NewPatientFile.FilePath = _fileUploadService.FilePath;
                     NewPatientFile.DateUploaded = DateTime.Now;

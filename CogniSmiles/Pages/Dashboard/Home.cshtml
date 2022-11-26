@@ -44,13 +44,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Patient[0].InmplantLength)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].DicomFile)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].StlIosFile)
-            </th>
+            </th>            
             <th>
                 @Html.DisplayNameFor(model => model.Patient[0].PatientStatus)
             </th>
@@ -80,13 +74,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InmplantLength)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DicomFile)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StlIosFile)
-            </td>
+            </td>            
             <td>
                 @Html.DisplayFor(modelItem => item.PatientStatus)
             </td>
@@ -95,8 +83,8 @@
             </td>
             <td>
                 <a asp-page="./EditPatient" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./PatientDetails" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./UploadFiles" asp-route-id="@item.Id">Upload Files</a>
+                @*<a asp-page="./PatientDetails" asp-route-id="@item.Id">Details</a> |*@
+                <a asp-page="./UploadFiles" asp-route-id="@item.Id">Upload Files</a> |
                 <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

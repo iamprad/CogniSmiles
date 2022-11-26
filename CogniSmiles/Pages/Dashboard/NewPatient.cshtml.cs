@@ -5,10 +5,9 @@ using CogniSmiles.Models;
 
 namespace CogniSmiles.Pages.Dashboard
 {
-    public class NewPatientModel : PageModel
+    public class NewPatientModel : AuthModel
     {
-        private readonly CogniSmilesContext _context;
-        private AuthModel _authModel;
+        private readonly CogniSmilesContext _context;       
         public NewPatientModel(CogniSmilesContext context)
         {
             _context = context;            
@@ -16,9 +15,8 @@ namespace CogniSmiles.Pages.Dashboard
 
         public IActionResult OnGet()
         {
-            // Authorize 
-            _authModel = new AuthModel(HttpContext.Session);
-            if (!_authModel.IsAuthenticated)
+            // Authorize           
+            if (!IsAuthenticated)
                 return NotFound();
             return Page();
         }
@@ -29,14 +27,12 @@ namespace CogniSmiles.Pages.Dashboard
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            // Authorize 
-            _authModel = new AuthModel(HttpContext.Session);
+            // Authorize            
             if (!ModelState.IsValid)
             {
                 return Page();
-            } 
-           
-            Patient.DoctorId = _authModel.DoctorId;
+            }            
+            Patient.DoctorId = DoctorId;
             _context.Patient.Add(Patient);
             await _context.SaveChangesAsync();
 

@@ -10,10 +10,10 @@ using CogniSmiles.Models;
 
 namespace CogniSmiles.Pages.Doctors
 {
-    public class LoginModel : PageModel
+    public class LoginModel : AuthModel
     {
         private readonly CogniSmilesContext _context;
-        private AuthModel _authModel;
+        //private AuthModel _authModel;
 
         public LoginModel(CogniSmilesContext context)
         {
@@ -23,7 +23,9 @@ namespace CogniSmiles.Pages.Doctors
 
         public IActionResult OnGet()
         {
-            _authModel = new AuthModel(HttpContext.Session);
+            // _authModel = new AuthModel(HttpContext.Session);
+            if (IsAuthenticated)
+                return RedirectToPage("../Dashboard/Home");   
             return Page();
         }
 
@@ -34,7 +36,7 @@ namespace CogniSmiles.Pages.Doctors
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            _authModel = new AuthModel(HttpContext.Session);
+            //_authModel = new AuthModel(HttpContext.Session);
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -65,8 +67,8 @@ namespace CogniSmiles.Pages.Doctors
             _context.Login.Update(login);
             await _context.SaveChangesAsync();
 
-            _authModel.IsAuthenticated = true;
-            _authModel.DoctorId = login.DoctorId;
+            IsAuthenticated = true;
+            DoctorId = login.DoctorId;
 
             return RedirectToPage("../Dashboard/Home");
         }

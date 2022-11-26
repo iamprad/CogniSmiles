@@ -6,10 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CogniSmiles.Pages.Dashboard
 {
-    public class HomeModel : PageModel
+    public class HomeModel : AuthModel
     {
-        private readonly CogniSmilesContext _context;
-        private AuthModel _authModel;
+        private readonly CogniSmilesContext _context;        
         public IList<Patient> Patient { get; set; } = default!;
         public HomeModel(CogniSmilesContext context)
         {           
@@ -18,14 +17,13 @@ namespace CogniSmiles.Pages.Dashboard
            
         }
         public async Task<ActionResult> OnGetAsync()
-        {
-            _authModel = new AuthModel(HttpContext.Session);
-            if (!_authModel.IsAuthenticated)
+        {            
+            if (!IsAuthenticated)
                 return RedirectToPage("../Index");
             
-            else if (_authModel.IsAuthenticated && _authModel.DoctorId > 0)
+            else if (IsAuthenticated && DoctorId > 0)
             {
-                Patient = await _context.Patient.Where(p => p.DoctorId == _authModel.DoctorId).ToListAsync();
+                Patient = await _context.Patient.Where(p => p.DoctorId == DoctorId).ToListAsync();
             }
             return Page();
         }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CogniSmiles.Data;
 using CogniSmiles.Models;
 
 namespace CogniSmiles.Pages.Dashboard
 {
-    public class EditPatient : PageModel
+    public class EditPatient : AuthModel
     {
         private readonly CogniSmilesContext _context;
 
@@ -20,7 +19,8 @@ namespace CogniSmiles.Pages.Dashboard
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Patient == null)
+
+            if (!IsAuthenticated && (id == null || _context.Patient == null))
             {
                 return NotFound();
             }
@@ -61,7 +61,7 @@ namespace CogniSmiles.Pages.Dashboard
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Home");
         }
 
         private bool PatientExists(int id)

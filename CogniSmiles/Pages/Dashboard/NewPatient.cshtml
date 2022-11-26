@@ -45,12 +45,12 @@
             </div>            
             <div class="form-group">
                 <label asp-for="Patient.PatientStatus" class="control-label"></label>
-                <select asp-for="Patient.PatientStatus" class="form-control" asp-items="Html.GetEnumSelectList<PatientStatus>()">></select>
+                <select asp-for="Patient.PatientStatus" class="form-control" asp-items="Html.GetEnumSelectList<PatientStatus>()"></select>
                 <span asp-validation-for="Patient.PatientStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Patient.Comments" class="control-label"></label>
-                <input asp-for="Patient.Comments" class="form-control" />
+                <textarea asp-for="Patient.Comments" class="form-control"></textarea>
                 <span asp-validation-for="Patient.Comments" class="text-danger"></span>
             </div>
             <div class="form-group">
