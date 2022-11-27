@@ -58,7 +58,8 @@ namespace CogniSmiles.Pages.Doctors
                 
             else if (!login.IsActive)
             {
-                ViewData["LoginError"] = "Your Account is not activated. Please activate your account before logging in";
+                DoctorLogin.DoctorId = login.DoctorId;
+                ViewData["LoginError"] = "Your Account is not activated. Please activate your account before logging in.";
                 return Page();
             }
             

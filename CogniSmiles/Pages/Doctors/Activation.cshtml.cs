@@ -77,14 +77,31 @@ namespace CogniSmiles.Pages.Doctors
 
             // send email
             using var smtp = new SmtpClient();
-            smtp.Connect(emailConfig.GetValue<string>("SmtpServer"), emailConfig.GetValue<int>("Port"), SecureSocketOptions.StartTls);
+            smtp.Connect(emailConfig.GetValue<string>("SmtpServer"), emailConfig.GetValue<int>("Port"), SecureSocketOptions.SslOnConnect);
             smtp.Authenticate(emailConfig.GetValue<string>("Username"), emailConfig.GetValue<string>("Password"));
             smtp.Send(email);
             smtp.Disconnect(true);
 
             return Page();
         }
+        public async Task<IActionResult> OnGetActivate(Guid userId)
+        {
 
-        
+            var login = _context.Login.Where(l => l.UserId == userId).FirstOrDefault();
+            if (login == null)
+                return NotFound();
+            
+            login.IsActive = true;
+            login.ActivatedOn = DateTime.Now;
+
+            _context.Login.Update(login);
+            await _context.SaveChangesAsync();
+            UserId = login.UserId;
+            DoctorEmail = login.UserName;
+
+            return Page();
+        }
+
+
     }
 }

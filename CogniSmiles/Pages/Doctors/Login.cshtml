@@ -57,6 +57,10 @@
                         <td colspan="2" align="center">
                             <div class="form-group">
                                 <label class="col-form-label"> @ViewData["LoginError"]?.ToString() </label>
+                                @if(!Model.DoctorLogin.IsActive)
+                                {
+                                    <a asp-page="../Doctors/Activation" asp-route-id="@Model.DoctorLogin.DoctorId" class="btn-primary"> Get Activation Email </a>
+                                }
                             </div>
                         </td>
                     </tr>

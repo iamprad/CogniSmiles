@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using CogniSmiles.Data;
 using CogniSmiles.Models;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts;
 
 namespace CogniSmiles.Pages.Dashboard
 {
@@ -30,13 +31,14 @@ namespace CogniSmiles.Pages.Dashboard
             {
                 return NotFound();
             }
-            Patient = patient;
+            Patient = patient;          
+
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(Patient patient)
         {
             if (!ModelState.IsValid)
             {
@@ -46,7 +48,7 @@ namespace CogniSmiles.Pages.Dashboard
             _context.Attach(Patient).State = EntityState.Modified;
 
             try
-            {
+            {   
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
