@@ -30,5 +30,12 @@ namespace CogniSmiles.Models
                 PageContext.HttpContext.Session.SetInt32("doctorId", value);
             }
         }
+        public bool ClearSession()
+        {
+            IsAuthenticated = false;
+            DoctorId = 0;
+            PageContext.HttpContext.Session.Clear();
+            return true;
+        }
     }
 }

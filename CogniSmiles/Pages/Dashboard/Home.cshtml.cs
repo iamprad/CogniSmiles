@@ -27,5 +27,14 @@ namespace CogniSmiles.Pages.Dashboard
             }
             return Page();
         }
+        
+        public ActionResult OnGetSignOut()
+        {
+            if (!IsAuthenticated)
+                return RedirectToPage("../Index");
+
+            ClearSession();            
+            return RedirectToPage("../Index"); 
+        }
     }
 }
