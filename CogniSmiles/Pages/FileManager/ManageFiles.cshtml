@@ -1,6 +1,6 @@
 ﻿@page
 @using CogniSmiles.Models
-@model CogniSmiles.Pages.Dashboard.UploadFilesModel
+@model CogniSmiles.Pages.FileManager.ManageFilesModel
 @{
     ViewData["Title"] = "View / Upload Files Patient Record";
 }
@@ -35,9 +35,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DateUploaded)
                 </td>                
-                <td>
-                    <a asp-page="./EditPatientFile" asp-route-id="@item.Id">Edit</a> |                                        
-                    <a asp-page="./DeletePatientFile" asp-route-id="@item.Id">Delete</a>
+                <td>                    
+                    <a asp-page="./DownLoadFile" asp-route-id="@item.Id">Download</a> <br/>
+                    <a asp-page="./DeleteFile" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }

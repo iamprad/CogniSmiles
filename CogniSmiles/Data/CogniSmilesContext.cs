@@ -18,6 +18,7 @@ namespace CogniSmiles.Data
         public DbSet<Doctor> Doctor { get; set; } = default!;
         public DbSet<Login> Login { get; set; } = default!;
         public DbSet<PatientFile> PatientFile { get; set; } = default!; 
+        public DbSet<DoctorComment> DoctorComment { get; set; } = default!;
 
     }
 }

@@ -1,17 +1,18 @@
 ﻿@page
 @using CogniSmiles.Models
-@model CogniSmiles.Pages.Dashboard.EditPatient
+@model CogniSmiles.Pages.Dashboard.UpdatePatientModel
 
 @{
-    ViewData["Title"] = "Edit Patient Record";
+    ViewData["Title"] = "Update Patient Record";
 }
 
-<h1>Edit Details of Patient : @Model.Patient.PatientCode</h1>
-
+<h1>Update details and Add comments against patinet record : @Model.Patient.PatientCode</h1>
+ <form method="post">
 <hr />
+<h2> Update Details of Patient Record </h2>
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+       
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Patient.Id" />
             <input type="hidden" asp-for="Patient.DoctorId" />
@@ -58,10 +59,10 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form>
+        
     </div>
 </div>
-
+</form>
 <div>
     <a asp-page="./Home">Back to List</a>
 </div>

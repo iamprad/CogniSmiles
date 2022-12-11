@@ -82,9 +82,9 @@
                 @Html.DisplayFor(modelItem => item.Comments)
             </td>
             <td>
-                <a asp-page="./EditPatient" asp-route-id="@item.Id">Edit</a> |
-                @*<a asp-page="./PatientDetails" asp-route-id="@item.Id">Details</a> |*@
-                <a asp-page="./UploadFiles" asp-route-id="@item.Id">Upload Files</a> |
+                <a asp-page="./UpdatePatient" asp-route-id="@item.Id">Update </a> <br/>
+                <a asp-page="./PatientComment" asp-route-id="@item.Id"> Add / View Comments </a> <br />
+                <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">Manage Files</a> <br />
                 <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>

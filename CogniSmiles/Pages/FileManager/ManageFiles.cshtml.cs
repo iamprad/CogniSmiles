@@ -1,21 +1,19 @@
 using CogniSmiles.Data;
 using CogniSmiles.Interfaces;
-using CogniSmiles.Migrations;
 using CogniSmiles.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace CogniSmiles.Pages.Dashboard
+namespace CogniSmiles.Pages.FileManager
 {
-    public class UploadFilesModel : AuthModel
+    public class ManageFilesModel : AuthModel
     {
         private readonly CogniSmilesContext _context;        
         private readonly IFileUploadService _fileUploadService;
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
         public IList<PatientFile> PatientFiless { get; set; }
-        public UploadFilesModel(CogniSmilesContext context, IFileUploadService fileUploadService)
+        public ManageFilesModel(CogniSmilesContext context, IFileUploadService fileUploadService)
         {
             _context = context;
             _fileUploadService = fileUploadService;

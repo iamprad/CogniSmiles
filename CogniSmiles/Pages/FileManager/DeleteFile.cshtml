@@ -1,0 +1,35 @@
+﻿@page
+@using CogniSmiles.Models;
+@model CogniSmiles.Pages.FileManager.DeleteFileModel
+@{
+    ViewData["Title"] = "Delete Files in Patient Record";
+}
+<h1> @ViewData["Title"] </h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="DeletionFile.FileType" class="control-label" />
+                <input asp-for="DeletionFile.FileType" class="form-control" type="text" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletionFile.FileName" class="control-label" />
+                <input asp-for="DeletionFile.FileName" class="form-control" type="text" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletionFile.FilePath" class="control-label" />
+                <input asp-for="DeletionFile.FilePath" class="form-control" type="text" readonly="readonly" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DeletionFile.DateUploaded" class="control-label" />
+                <input asp-for="DeletionFile.DateUploaded" class="form-control" type="text" readonly="readonly" />
+            </div>
+            <div class="form-group">
+               
+                <input type="submit" value="Download" class="btn btn-secondary" asp-page="DeleteFile" asp-page-handler="Delete"/>
+            </div>
+        </form>
+    </div>
+</div>
+
