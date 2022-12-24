@@ -20,6 +20,7 @@ namespace CogniSmiles.Pages.Dashboard
         public string PostedComment { get; set; }
         public IList<DoctorComment> DoctorComments { get; set; }
         public DoctorComment NewComment { get; set; }
+        [BindProperty]
         public int? PatientId { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -51,7 +52,7 @@ namespace CogniSmiles.Pages.Dashboard
                 return Page();
 
             NewComment.CommentDate = DateTime.Now;
-            NewComment.PatientId = (int)PatientId;
+            NewComment.PatientId =(int) PatientId;
             NewComment.DoctorId = DoctorId;
             NewComment.Comment = PostedComment;
             _context.DoctorComment.Add(NewComment);
