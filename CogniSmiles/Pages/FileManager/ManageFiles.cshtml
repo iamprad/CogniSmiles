@@ -70,9 +70,11 @@
 </div>
 
 <div>
-    <a asp-page="./Home">Back to List</a>
+    <a asp-page="../Dashboard/Home">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -69,6 +69,8 @@ namespace CogniSmiles.Pages.Doctors
             await _context.SaveChangesAsync();
 
             IsAuthenticated = true;
+            IsAdmin = (login.AuthType == AuthType.Admin);
+
             DoctorId = login.DoctorId;
 
             return RedirectToPage("../Dashboard/Home");

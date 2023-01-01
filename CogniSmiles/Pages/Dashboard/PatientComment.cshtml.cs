@@ -35,9 +35,12 @@ namespace CogniSmiles.Pages.Dashboard
                 return NotFound();
             }
             PatientId = id;
-            var comments = await _context.DoctorComment.Where(m => m.PatientId == id && m.DoctorId == DoctorId).ToListAsync();
+
+            var comments = await _context.DoctorComment.Where(m => m.PatientId == id).ToListAsync();
             if (comments != null)
             {
+                if(!IsAdmin)
+                    comments = comments.FindAll(dc => dc.DoctorId == DoctorId);
                 DoctorComments = comments;
             }
 

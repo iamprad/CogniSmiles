@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CogniSmiles/appsettings.json
+/CogniSmiles/UploadedFiles/NE52684229.pdf
+/CogniSmiles/UploadedFiles/P60 PRADEEP KUMAR VOORUKONDA - 09_04_2022.pdf

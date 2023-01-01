@@ -1,7 +1,6 @@
 using CogniSmiles.Data;
 using CogniSmiles.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace CogniSmiles.Pages.Dashboard
@@ -23,7 +22,13 @@ namespace CogniSmiles.Pages.Dashboard
             
             else if (IsAuthenticated && DoctorId > 0)
             {
-                Patient = await _context.Patient.Where(p => p.DoctorId == DoctorId).ToListAsync();
+                if(IsAdmin)
+                {
+                    Patient = await _context.Patient.ToListAsync();
+                }
+                else {
+                    Patient = await _context.Patient.Where(p => p.DoctorId == DoctorId).ToListAsync();
+                }                
             }
             return Page();
         }

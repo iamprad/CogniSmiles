@@ -45,27 +45,7 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Patient.InmplantLength)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Patient.DicomFile)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Patient.DicomFile)
-            <form method="post" enctype="multipart/form-data">
-                <input type="file" name="file" /> 
-                <button type="submit">Upload File</button>
-            </form>
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Patient.StlIosFile)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Patient.StlIosFile)
-            <form method="post" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <button type="submit">Upload File</button>
-            </form>
-        </dd>
+        </dd>        
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Patient.PatientStatus)
         </dt>
@@ -81,6 +61,8 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./EditPatient" asp-route-id="@Model.Patient?.Id">Edit</a> |
-    <a asp-page="./Home">Back to List</a>
+    <a asp-page="./UpdatePatient" asp-route-id="@Model.Patient.Id">Update </a> |
+    <a asp-page="./PatientComment" asp-route-id="@Model.Patient.Id"> Add / View Comments </a> |
+    <a asp-page="../FileManager/ManageFiles" asp-route-id="@Model.Patient.Id">Manage Files</a> |
+    <a asp-page="./DeletePatient" asp-route-id="@Model.Patient.Id">Delete</a>   
 </div>

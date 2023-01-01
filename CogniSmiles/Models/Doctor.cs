@@ -7,6 +7,7 @@
         {
             BillingAddress = new PostalAddress();
             DeliveryAddress = new PostalAddress();
+
         }
         public int Id { get; set; }
         public string FullName { get; set; }
@@ -15,6 +16,9 @@
         public string Email { get; set; }
         public PostalAddress BillingAddress { get; set; }
         public PostalAddress DeliveryAddress { get; set; }
+        public DateTime? AddedDate { get; set;}
+        public DateTime? UpdatedDate { get; set; }
+        public string UpdateComment { get; set; }
     }
 
     public class PostalAddress

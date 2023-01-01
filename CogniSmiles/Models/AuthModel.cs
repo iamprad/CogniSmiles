@@ -6,6 +6,7 @@ namespace CogniSmiles.Models
     {       
         private bool isAuthenticated;
         private int doctorId;
+        private bool isAdmin;
         public bool IsAuthenticated { 
             get {     
                 
@@ -17,6 +18,20 @@ namespace CogniSmiles.Models
                 isAuthenticated = value;
                 PageContext.HttpContext.Session.SetString("isAuthenticated", value.ToString());
             } 
+        }
+        public bool IsAdmin
+        {
+            get
+            {
+                if (!isAdmin)
+                    isAdmin = Convert.ToBoolean(PageContext.HttpContext.Session.GetString("isAdmin"));
+                return isAdmin;
+            }
+            set
+            {
+                isAdmin = value;
+                PageContext.HttpContext.Session.SetString("isAdmin", value.ToString());
+            }
         }
         public int DoctorId
         {
