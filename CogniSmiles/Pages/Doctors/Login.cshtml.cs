@@ -43,7 +43,7 @@ namespace CogniSmiles.Pages.Doctors
             }            
             
             var login = _context.Login.Where(login => login.UserName == DoctorLogin.UserName && login.Password == DoctorLogin.Password).SingleOrDefault();
-
+            ViewData["LoginActive"] = true; 
             if (login == null)
             {
                 ViewData["LoginError"] = "Invalid Login Credentials";
@@ -60,6 +60,7 @@ namespace CogniSmiles.Pages.Doctors
             {
                 DoctorLogin.DoctorId = login.DoctorId;
                 ViewData["LoginError"] = "Your Account is not activated. Please activate your account before logging in.";
+                ViewData["LoginActive"] = false;
                 return Page();
             }
             
