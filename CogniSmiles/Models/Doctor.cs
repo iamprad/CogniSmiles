@@ -18,7 +18,7 @@
         public PostalAddress DeliveryAddress { get; set; }
         public DateTime? AddedDate { get; set;}
         public DateTime? UpdatedDate { get; set; }
-        public string UpdateComment { get; set; }
+        public string? UpdateComment { get; set; }
     }
 
     public class PostalAddress
