@@ -6,7 +6,7 @@
     ViewData["Title"] = "Add / Update Comments on Patient Record";
 }
 
-<h2>View Comments on Patient Record </h2>
+<h2>View Comments </h2>
     <hr />
 <form method="post">
     @if (Model.DoctorComments.Count > 0)
@@ -20,8 +20,7 @@
                             @Html.DisplayNameFor(model => model.DoctorComments[0].Comment) :  @Html.DisplayFor(modelItem => item.Comment)
                         </td>
                         <td>
-                            <input type="submit" value="Delete" class="btn btn-secondary" asp-page="PatientComment" asp-page-handler="DeleteComment" asp-route-CommentId="@item.Id" />
-                            
+                            <input type="submit" value="Delete" class="btn btn-secondary" asp-page="PatientComment" asp-page-handler="DeleteComment" asp-route-CommentId="@item.Id" />                            
                         </td>
                     </tr>
                     <tr>
@@ -40,9 +39,9 @@
     {
         <label class="text-black"> No comments added for this patient  </label>
     }
-<hr />
-<h2> Add Comments to a Patient Record </h2>
 
+<h2> Add Comments </h2>
+<hr />
     <div class="row">
         <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

@@ -86,8 +86,17 @@ namespace CogniSmiles.Pages.Dashboard
 
                     var email = new MimeMessage();
                     email.From.Add(MailboxAddress.Parse(emailConfig.GetValue<string>("From")));
-                   // email.To.Add(MailboxAddress.Parse("info@roseboroughdentalpractice.co.uk"));
-                    email.To.Add(MailboxAddress.Parse("pradeepvoorukonda@ymail.com"));
+
+                    var adminId = _context.Login.Where(l => l.AuthType == AuthType.Admin).Select(d => d.DoctorId).FirstOrDefault();
+                    var docEmail = _context.Doctor.Where(d1 => d1.Id == adminId).Select(d => d.Email).FirstOrDefault();
+
+                    if (IsAdmin && Patient.PatientStatus == (PatientStatus.AmendPlan | PatientStatus.ApprovePlan))
+                    {
+                        //Get Doctor Email
+                        docEmail = _context.Doctor.Where(d1 => d1.Id == Patient.DoctorId).Select(d => d.Email).FirstOrDefault();                       
+                    }
+                    email.To.Add(MailboxAddress.Parse(docEmail));
+                    //email.To.Add(MailboxAddress.Parse("pradeepvoorukonda@ymail.com"));
 
                     email.Subject = "[TEST Purpose Only] Patient Status Change - CogniSmiles";
                     email.Body = new TextPart(TextFormat.Html) { Text = emailContents };

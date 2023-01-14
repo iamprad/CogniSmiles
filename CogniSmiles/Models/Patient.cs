@@ -22,7 +22,7 @@
         MoreInfoRequested = 2,
         AwaitingApproval = 3,
         AmendPlan = 4,
-        ApprovedPlan = 5,
+        ApprovePlan = 5,
         GuidePosted = 6
     }
 }

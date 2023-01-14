@@ -20,14 +20,16 @@
     </div>
 </nav>
 
-<h1>List of Patient Records</h1>
 <div>
     <a asp-page="./NewPatient">Add New Patient Record</a>
-    @if(Model.IsAdmin)
+    @if (Model.IsAdmin)
     {
-        <a asp-page="../Doctors/Index">List of Doctors</a>        
+        <a asp-page="../Doctors/Index">List of Doctors</a>
     }
 </div>
+
+<h1>List of Patient Records</h1>
+
 <table class="table">
     <thead>
         <tr>
@@ -81,15 +83,12 @@
             </td>            
             <td>
                 @Html.DisplayFor(modelItem => item.PatientStatus)
-            </td>
+            </td>            
             <td>
-                @Html.DisplayFor(modelItem => item.Comments)
-            </td>
-            <td>
-                <a asp-page="./UpdatePatient" asp-route-id="@item.Id">Update </a> <br/>
-                <a asp-page="./PatientComment" asp-route-id="@item.Id"> Add / View Comments </a> <br />
-                <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">Manage Files</a> <br />
-                <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./UpdatePatient" asp-route-id="@item.Id">Update Patient </a> <br/>
+                <a asp-page="./PatientComment" asp-route-id="@item.Id">Patient Comments </a> <br />
+                <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">Patient Files</a> <br />
+                <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete Patient</a>
             </td>
         </tr>
 }
