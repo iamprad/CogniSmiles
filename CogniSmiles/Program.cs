@@ -14,7 +14,7 @@ builder.Services.AddDbContext<CogniSmilesContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CogniSmilesContext") ?? throw new InvalidOperationException("Connection string 'CogniSmilesContext' not found.")));
 
 builder.Services.AddTransient<IFileUploadService, FileUploadLocalService>();
-
+builder.Services.AddTransient<IEmailService, EmailService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {
