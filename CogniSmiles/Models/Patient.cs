@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public int DoctorId { get; set; }
         public string? PatientCode { get; set; } 
-        public DateTime? SurgicalGuideWrittenDate { get; set; }
+        public DateTime? SurgicalGuideReturnDate { get; set; }
         public string? ImplantSite { get; set; }
         public string? ImplantSystem { get; set; }
         public int? ImplantDiameter { get; set; }
