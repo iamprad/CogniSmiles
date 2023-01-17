@@ -11,7 +11,7 @@
     }
     public enum FileType
     {
-        DicomFile = 0,
-        StlIosFile = 1
+        DICOMFile = 0,
+        STLFile = 1
     }
 }
