@@ -16,16 +16,13 @@
                 @foreach (var item in Model.DoctorComments)
                 {
                     <tr>
-                        <td>
+                        <td colspan="2">
                             @Html.DisplayNameFor(model => model.DoctorComments[0].Comment) :  @Html.DisplayFor(modelItem => item.Comment)
-                        </td>
-                        <td>
-                            <input type="submit" value="Delete" class="btn btn-secondary" asp-page="PatientComment" asp-page-handler="DeleteComment" asp-route-CommentId="@item.Id" />                            
-                        </td>
+                        </td>                        
                     </tr>
                     <tr>
                         <td>
-                            @Html.DisplayNameFor(model => model.DoctorComments[0].DoctorId) : @Html.DisplayFor(modelItem => item.DoctorId)
+                            @Html.DisplayNameFor(model => model.DoctorComments[0].PracticeName) : @Html.DisplayFor(modelItem => item.PracticeName)
                         </td>
                         <td>
                             @Html.DisplayNameFor(model => model.DoctorComments[0].CommentDate): @Html.DisplayFor(modelItem => item.CommentDate)

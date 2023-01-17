@@ -1,5 +1,6 @@
 ﻿using CogniSmiles.Data;
 using CogniSmiles.Models;
+using CogniSmiles.Models.View_Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,13 +13,13 @@ namespace CogniSmiles.Pages.Dashboard
         public PatientCommentModel(CogniSmilesContext context)
         {
             _context = context;
-            DoctorComments = new List<DoctorComment>();
+            DoctorComments = new List<ViewCommentsModel>();
             NewComment = new DoctorComment();
         }
         
         [BindProperty]
         public string PostedComment { get; set; }
-        public IList<DoctorComment> DoctorComments { get; set; }
+        public IList<ViewCommentsModel> DoctorComments { get; set; }
         public DoctorComment NewComment { get; set; }
         [BindProperty]
         public int? PatientId { get; set; }
@@ -28,21 +29,7 @@ namespace CogniSmiles.Pages.Dashboard
             {
                 return NotFound();
             }
-
-            var patient = await _context.Patient.FirstOrDefaultAsync(m => m.Id == id);
-            if (patient == null)
-            {
-                return NotFound();
-            }
-            PatientId = id;
-
-            var comments = await _context.DoctorComment.Where(m => m.PatientId == id).ToListAsync();
-            if (comments != null)
-            {
-                if(!IsAdmin)
-                    comments = comments.FindAll(dc => dc.DoctorId == DoctorId);
-                DoctorComments = comments;
-            }
+            await getComments(id);           
 
             return Page();
         }
@@ -62,19 +49,27 @@ namespace CogniSmiles.Pages.Dashboard
 
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Home");
+            await getComments(PatientId);
+
+            return Page();
         }
-        public async Task<IActionResult> OnPostDeleteCommentAsync(int CommentId)
-        {           
-            var comment = await _context.DoctorComment.FirstOrDefaultAsync(c => c.Id == CommentId);
-
-            if (comment != null)
+        private async Task getComments(int? id)
+        {
+            var patient = await _context.Patient.FirstOrDefaultAsync(m => m.Id == id);
+            if (patient != null)
             {
-                _context.DoctorComment.Remove(comment);
-
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToPage("./Home");
+                PatientId = id;
+                var commentsNew = from dc in _context.Set<DoctorComment>() 
+                                    join d in _context.Set<Doctor>() on dc.DoctorId equals d.Id
+                                    where dc.PatientId == PatientId
+                                  select new ViewCommentsModel() { CommentDate = dc.CommentDate, PatientId = dc.PatientId, DoctorId = dc.DoctorId, Comment = dc.Comment,PracticeName = d.PracticeName };
+                if (commentsNew != null)
+                {
+                    if (!IsAdmin)
+                        commentsNew = commentsNew.Where(dc => dc.DoctorId == DoctorId);
+                    DoctorComments = commentsNew.ToList();
+                }
+            }            
         }
     }
 }
