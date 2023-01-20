@@ -27,3 +27,7 @@ div td a, div a{
     border-block-end-style: solid;
     border-block-color:black;
 }
+.btn-secondary{
+   background-color:red;
+   border:none;
+}
