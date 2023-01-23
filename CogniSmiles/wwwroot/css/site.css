@@ -21,13 +21,22 @@ body {
     border-block-color:burlywood;
     border-block-width:3px;
 }
-div td a, div a{
+div td a, div a {
     text-decoration: none;
-    color: rgb(214,72,52);
+    color: #CE4D30;
     border-block-end-style: solid;
-    border-block-color:black;
+    border-block-color: black;
 }
-.btn-secondary{
-   background-color:red;
-   border:none;
+.btn-secondary {
+    background-color: #CE4D30;
+    border: none;
+}
+.site-logo{
+    width:120px;
+}
+.table-login{
+    margin:10px auto 10px auto;
+    width:400px;
+    display:block;
+    position:relative;
 }
