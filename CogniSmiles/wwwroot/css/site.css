@@ -40,3 +40,19 @@ div td a, div a {
     display:block;
     position:relative;
 }
+.patient_links a {    
+    width: 150px; 
+    border-width: 1px !important;
+    border-color: #CE4D30;
+    text-align: center;
+    border-style: solid;
+    background-color: #CE4D30;
+    color:white;
+    display:block;
+    margin-bottom:5px;
+    padding:5px;
+}
+    .patient_links a:hover {
+        background-color: white;
+        color: #CE4D30;
+    }

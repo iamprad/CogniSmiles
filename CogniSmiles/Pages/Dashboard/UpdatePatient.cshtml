@@ -10,8 +10,7 @@
  <form method="post">
 <hr />
 <div class="row">
-    <div class="col-md-4">
-       
+    <div class="col-md-4">       
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Patient.Id" />
             <input type="hidden" asp-for="Patient.DoctorId" />
@@ -71,10 +70,14 @@
                 <span asp-validation-for="Patient.Comments" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />                              
+            </div>        
+            <div class="mainlinks">
+                <a asp-page="./PatientComment" asp-route-id="Patient.Id">Dentist Comments </a> 
+                <a asp-page="../FileManager/ManageFiles" asp-route-id="Patient.Id">Patient Files</a>
+                <a asp-page="./DeletePatient" asp-route-id="Patient.Id">Delete Patient</a>
             </div>
-        
-    </div>
+        </div>
 </div>
 </form>
 <div>

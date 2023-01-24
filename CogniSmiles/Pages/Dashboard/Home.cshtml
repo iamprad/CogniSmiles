@@ -35,9 +35,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Patient[0].PatientStatus)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].Comments)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -65,10 +62,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PatientStatus)
             </td>            
-            <td>
-                <a asp-page="./UpdatePatient" asp-route-id="@item.Id">Update Patient </a> <br/>
-                <a asp-page="./PatientComment" asp-route-id="@item.Id">Patient Comments </a> <br />
-                <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">Patient Files</a> <br />
+            <td class="patient_links">
+                <a asp-page="./UpdatePatient" asp-route-id="@item.Id">Update Patient </a> 
+                <a asp-page="./PatientComment" asp-route-id="@item.Id">Doctor Comments </a> 
+                <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">Patient Files</a>
                 <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete Patient</a>
             </td>
         </tr>
