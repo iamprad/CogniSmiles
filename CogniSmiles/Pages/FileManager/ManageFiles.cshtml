@@ -50,9 +50,18 @@
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label asp-for="NewPatientFile.FileType" class="control-label" />
-                <select asp-for="NewPatientFile.FileType" class="form-control" asp-items="Html.GetEnumSelectList<FileType>()">
-                </select>
+                <div class="form-group">
+                    <label asp-for="NewPatientFile.FileType" class="control-label"></label>
+                    @foreach (var item in System.Enum.GetValues(typeof(FileType)))
+                    {
+                      <label>
+                        <input  type="radio" 
+                                asp-for="NewPatientFile.FileType" 
+                                value="@Convert.ToInt32(item)" />
+                        @item
+                      </label>
+                    }
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="NewPatientFile.FileName" class="control-label" />

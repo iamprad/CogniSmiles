@@ -56,3 +56,13 @@ div td a, div a {
         background-color: white;
         color: #CE4D30;
     }
+div.patient_links {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+div.patient_links a {
+    position: relative;
+    display: inline;
+    margin-right: 5px;
+    
+}
