@@ -63,6 +63,24 @@ div.patient_links {
 div.patient_links a {
     position: relative;
     display: inline;
-    margin-right: 5px;
-    
+    margin-right: 5px;    
 }
+.patient_table{
+    margin-left:auto;
+    margin-right:auto;
+}
+    .patient_table td div label {
+        color: #565553;
+        font-weight:bold;
+    }
+.patient_table td div
+{
+    width:300px;
+    margin-left:15px;
+    margin-bottom:15px;
+}
+    .patient_table td div .form-control {
+        border-color: #CE4D30;
+        border-width: 2px;
+    }
+

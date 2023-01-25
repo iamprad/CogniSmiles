@@ -7,82 +7,118 @@
 }
 
 <h1>Update details of patinet record : @Model.Patient.PatientCode</h1>
- <form method="post">
 <hr />
-<div class="row">
-    <div class="col-md-4">       
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Patient.Id" />
-            <input type="hidden" asp-for="Patient.DoctorId" />
-            <div class="form-group">
-                <label asp-for="Patient.PatientCode" class="control-label"></label>
-                <input asp-for="Patient.PatientCode" class="form-control" readonly="readonly" />
-                <span asp-validation-for="Patient.PatientCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.SurgicalGuideReturnDate" class="control-label"></label>
-                <input asp-for="Patient.SurgicalGuideReturnDate" class="form-control" />
-                <span asp-validation-for="Patient.SurgicalGuideReturnDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.ImplantSite" class="control-label"></label>
-                <input asp-for="Patient.ImplantSite" class="form-control" />
-                <span asp-validation-for="Patient.ImplantSite" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.ImplantSystem" class="control-label"></label>
-                <input asp-for="Patient.ImplantSystem" class="form-control" />
-                <span asp-validation-for="Patient.ImplantSystem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.ImplantDiameter" class="control-label"></label>
-                <input asp-for="Patient.ImplantDiameter" class="form-control" />
-                <span asp-validation-for="Patient.ImplantDiameter" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.ImplantLength" class="control-label"></label>
-                <input asp-for="Patient.ImplantLength" class="form-control" />
-                <span asp-validation-for="Patient.ImplantLength" class="text-danger"></span>
-            </div>            
-            <div class="form-group">
-                <label asp-for="Patient.PatientStatus" class="control-label"></label>
-                @if(Model.IsAdmin)
-                {
-                    <select asp-for="Patient.PatientStatus" class="form-control" asp-items="Html.GetEnumSelectList<PatientStatus>()"></select>
-                }
-                else
-                {
-                    <div class="input-group">
-                        <input asp-for="Patient.PatientStatus" type="radio" value="@PatientStatus.AmendPlan" checked />
-                        <label asp-for="Patient.PatientStatus" class="col-form-label"> Amend Plan </label>
-                    </div>
-                    <div class="input-group">
-                        <input asp-for="Patient.PatientStatus" type="radio" value="@PatientStatus.ApprovePlan" />
-                        <label asp-for="Patient.PatientStatus" class="col-form-label"> Approve Plan </label>
-                    </div>
-                }
-                                 
-                <span asp-validation-for="Patient.PatientStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Patient.Comments" class="control-label"></label>
-                <textarea asp-for="Patient.Comments" class="form-control" ></textarea>
-                <span asp-validation-for="Patient.Comments" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />                              
-            </div>        
-            <div class="patient_links">
-                <a asp-page="./PatientComment" asp-route-id="Patient.Id">Dentist Comments </a> 
-                <a asp-page="../FileManager/ManageFiles" asp-route-id="Patient.Id">Patient Files</a>
-                <a asp-page="./DeletePatient" asp-route-id="Patient.Id">Delete Patient</a>
-            </div>
-        </div>
-</div>
+ <form method="post">
+    <table class="patient_table">
+        <tr>
+            <td colspan="2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Patient.Id" />
+                <input type="hidden" asp-for="Patient.DoctorId" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.PatientCode" class="control-label"></label>
+                    <input asp-for="Patient.PatientCode" class="form-control" readonly="readonly" />
+                    <span asp-validation-for="Patient.PatientCode" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.SurgicalGuideReturnDate" class="control-label"></label>
+                    <input asp-for="Patient.SurgicalGuideReturnDate" class="form-control" />
+                    <span asp-validation-for="Patient.SurgicalGuideReturnDate" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.ImplantSite" class="control-label"></label>
+                    <input asp-for="Patient.ImplantSite" class="form-control" />
+                    <span asp-validation-for="Patient.ImplantSite" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.ImplantSystem" class="control-label"></label>
+                    <input asp-for="Patient.ImplantSystem" class="form-control" />
+                    <span asp-validation-for="Patient.ImplantSystem" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.ImplantDiameter" class="control-label"></label>
+                    <input asp-for="Patient.ImplantDiameter" class="form-control" />
+                    <span asp-validation-for="Patient.ImplantDiameter" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.ImplantLength" class="control-label"></label>
+                    <input asp-for="Patient.ImplantLength" class="form-control" />
+                    <span asp-validation-for="Patient.ImplantLength" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.Comments" class="control-label"></label>
+                    <textarea asp-for="Patient.Comments" class="form-control"></textarea>
+                    <span asp-validation-for="Patient.Comments" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="Patient.PatientStatus" class="control-label"></label>
+                    @if (Model.IsAdmin)
+                    {
+                        <select asp-for="Patient.PatientStatus" class="form-control" asp-items="Html.GetEnumSelectList<PatientStatus>()"></select>
+                    }
+                    else
+                    {
+                        <div class="input-group">
+                            <input asp-for="Patient.PatientStatus" type="radio" value="@PatientStatus.AmendPlan" checked />
+                            <label asp-for="Patient.PatientStatus" class="col-form-label"> Amend Plan </label>
+                        </div>
+                        <div class="input-group">
+                            <input asp-for="Patient.PatientStatus" type="radio" value="@PatientStatus.ApprovePlan" />
+                            <label asp-for="Patient.PatientStatus" class="col-form-label"> Approve Plan </label>
+                        </div>
+                    }
+
+                    <span asp-validation-for="Patient.PatientStatus" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </td>
+            <td>
+                <div>
+                    <a asp-page="./Home">Back to List</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="patient_links">
+                    <a asp-page="./PatientComment" asp-route-id="Patient.Id">Dentist Comments </a>
+                    <a asp-page="../FileManager/ManageFiles" asp-route-id="Patient.Id">Patient Files</a>
+                    <a asp-page="./DeletePatient" asp-route-id="Patient.Id">Delete Patient</a>
+                </div>
+            </td>            
+        </tr>
+     </table>
 </form>
-<div>
-    <a asp-page="./Home">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
