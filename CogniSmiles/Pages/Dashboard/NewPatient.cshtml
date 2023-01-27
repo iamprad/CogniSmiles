@@ -65,19 +65,22 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td colspan="2">
                 <div class="form-group">
                     <label asp-for="Patient.Comments" class="control-label"></label>
                     <textarea asp-for="Patient.Comments" class="form-control"></textarea>
                     <span asp-validation-for="Patient.Comments" class="text-danger"></span>
                 </div>
             </td>
+           
+        </tr>
+        <tr>
             <td>
                 @if (Model.IsAdmin)
                 {
                     <div class="form-group">
                         <label asp-for="Patient.PatientStatus" class="control-label"></label>
-                        <select asp-for="Patient.PatientStatus" class="form-control" asp-items="Html.GetEnumSelectList<PatientStatus>()"></select>
+                        <select asp-for="Patient.PatientStatus" class="form-select" asp-items="Html.GetEnumSelectList<PatientStatus>()"></select>
                         <span asp-validation-for="Patient.PatientStatus" class="text-danger"></span>
                     </div>
                 }
@@ -86,15 +89,18 @@
                     <input type="hidden" asp-for="Patient.PatientStatus" value="@PatientStatus.AwaitingPlanning" />
                 }
             </td>
-        </tr>
-        <tr>
             <td>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" asp-page="Create" />
+                    <input type="submit" value="Create" class="btn btn-primary float-end" asp-page="Create" />
                 </div>
-            </td>
-            <td>
-                <div>
+            </td>            
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="patient_links">
+                    <a asp-page="./PatientComment" asp-route-id="Patient.Id">Dentist Comments </a>
+                    <a asp-page="../FileManager/ManageFiles" asp-route-id="Patient.Id">Patient Files</a>
+                    <a asp-page="./DeletePatient" asp-route-id="Patient.Id">Delete Patient</a>
                     <a asp-page="./Home">Back to List</a>
                 </div>
             </td>
