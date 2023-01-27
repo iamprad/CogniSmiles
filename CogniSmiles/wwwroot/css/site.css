@@ -81,41 +81,47 @@ h1{
                 border-color: #CE4D30;
                 border-width: 2px;
                 border-radius: 0px;
-            }  
-.patient_links a {    
-    width: 150px; 
+            }
+.patient_links a, .dashboard_links a {
+    width: 150px;
     border-width: 1px !important;
     border-color: #CE4D30;
     text-align: center;
     border-style: solid;
     background-color: #CE4D30;
-    color:white;
-    display:block;
-    margin-bottom:5px;
-    padding:5px;
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+    padding: 5px;
 }
-    .patient_links a:hover {
+    .patient_links a:hover,.dashboard_links a:hover {
         background-color: white;
         color: #CE4D30;
     }
+div.dashboard_links{
+    width:400px;
+    display:block;
+    margin:10px auto;
+    height:50px;
+}
 div.patient_links {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-div.patient_links a {
-    position: relative;
-    display: inline;
-    margin-right: 5px;  
-    padding:10px 20px;
-}
-    div.patient_links a:last-child {
-        border-color: #565553;
-        background-color: #565553;
+    div.patient_links a, div.dashboard_links a {
+        position: relative;
+        display: inline;
+        margin-right: 5px;
+        padding: 10px 20px;
     }
-        div.patient_links a:last-child:hover {
-            background-color: white;
-            color: #565553;
+        div.patient_links a:last-child, div.dashboard_links a:last-child {
+            border-color: #565553;
+            background-color: #565553;
         }
+            div.patient_links a:last-child:hover, div.dashboard_links a:last-child:hover {
+                background-color: white;
+                color: #565553;
+            }
 .patient_table {
     margin-left: auto;
     margin-right: auto;
