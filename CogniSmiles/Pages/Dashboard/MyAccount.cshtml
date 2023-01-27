@@ -6,176 +6,179 @@
 }
 <h1>My Account</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <h4>Dentist Details</h4>
-            <input type="hidden" asp-for="DoctorDetails.Id" />
-            <input type="hidden" asp-for="DoctorLogin.Id" />
-            <input type="hidden" asp-for="DoctorDetails.BillingAddress.Id" />
-            <input type="hidden" asp-for="DoctorDetails.DeliveryAddress.Id" />
-            <hr />
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    </td>                    
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.FullName" class="control-label"></label>
-                            <input asp-for="DoctorDetails.FullName" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.FullName" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.PracticeName" class="control-label"></label>
-                            <input asp-for="DoctorDetails.PracticeName" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.PracticeName" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.Phone" class="control-label"></label>
-                            <input asp-for="DoctorDetails.Phone" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.Phone" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.Email" class="control-label"></label>
-                            <input asp-for="DoctorDetails.Email" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.Email" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                <td>
-                    <h5>Delivery Address</h5>
-                </td>
-                <td>
-                    <h5>Billing Address</h5>
-                </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.DeliveryAddress.AddressLine1" class="control-label"></label>
-                            <input asp-for="DoctorDetails.DeliveryAddress.AddressLine1" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.DeliveryAddress.AddressLine1" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.BillingAddress.AddressLine1" class="control-label"></label>
-                            <input asp-for="DoctorDetails.BillingAddress.AddressLine1" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.BillingAddress.AddressLine1" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.DeliveryAddress.AddressLine2" class="control-label"></label>
-                            <input asp-for="DoctorDetails.DeliveryAddress.AddressLine2" class="form-control" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.BillingAddress.AddressLine2" class="control-label"></label>
-                            <input asp-for="DoctorDetails.BillingAddress.AddressLine2" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.DeliveryAddress.AddressLine3" class="control-label"></label>
-                            <input asp-for="DoctorDetails.DeliveryAddress.AddressLine3" class="form-control" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.BillingAddress.AddressLine3" class="control-label"></label>
-                            <input asp-for="DoctorDetails.BillingAddress.AddressLine3" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
+<form method="post">
+   
+    <input type="hidden" asp-for="DoctorDetails.Id" />
+    <input type="hidden" asp-for="DoctorLogin.Id" />
+    <input type="hidden" asp-for="DoctorDetails.BillingAddress.Id" />
+    <input type="hidden" asp-for="DoctorDetails.DeliveryAddress.Id" />
 
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.DeliveryAddress.City" class="control-label"></label>
-                            <input asp-for="DoctorDetails.DeliveryAddress.City" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.DeliveryAddress.City" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.BillingAddress.City" class="control-label"></label>
-                            <input asp-for="DoctorDetails.BillingAddress.City" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.BillingAddress.City" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.DeliveryAddress.PostalCode" class="control-label"></label>
-                            <input asp-for="DoctorDetails.DeliveryAddress.PostalCode" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.DeliveryAddress.PostalCode" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorDetails.BillingAddress.PostalCode" class="control-label"></label>
-                            <input asp-for="DoctorDetails.BillingAddress.PostalCode" class="form-control" />
-                            <span asp-validation-for="DoctorDetails.BillingAddress.PostalCode" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="checkbox" id="chkAddress" onchange="CopyAddress()"/>
-                        <label onclick="CopyAddress()">Is Billing Address Same as Delivery Address?</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="d-table-cell">
-                        <h4> Login Details </h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorLogin.UserName" class="control-label"></label>
-                            <input asp-for="DoctorLogin.UserName" class="form-control" />
-                            <span asp-validation-for="DoctorLogin.UserName" class="text-danger"></span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <label asp-for="DoctorLogin.Password" class="control-label"></label>
-                            <input asp-for="DoctorLogin.Password" class="form-control" type="password" />
-                            <span asp-validation-for="DoctorLogin.Password" class="text-danger"></span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <div class="form-group">
-                            <input type="submit" value="Update" class="btn btn-primary" />
-                        </div>
-                    </td>
-                </tr>
-            </table>            
-        </form>
-    </div>
-</div>
+    <table class="signup_form">
+        <tr>
+            <td colspan="2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </td>
+        </tr>
+         <tr>
+           <td colspan="2" class="d-table-cell">
+                <h4>Dentist Details</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.FullName" class="control-label"></label>
+                    <input asp-for="DoctorDetails.FullName" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.FullName" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.PracticeName" class="control-label"></label>
+                    <input asp-for="DoctorDetails.PracticeName" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.PracticeName" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.Phone" class="control-label"></label>
+                    <input asp-for="DoctorDetails.Phone" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.Phone" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.Email" class="control-label"></label>
+                    <input asp-for="DoctorDetails.Email" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.Email" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h5>Delivery Address</h5>
+            </td>
+            <td>
+                <h5>Billing Address</h5>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.DeliveryAddress.AddressLine1" class="control-label"></label>
+                    <input asp-for="DoctorDetails.DeliveryAddress.AddressLine1" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.DeliveryAddress.AddressLine1" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.BillingAddress.AddressLine1" class="control-label"></label>
+                    <input asp-for="DoctorDetails.BillingAddress.AddressLine1" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.BillingAddress.AddressLine1" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.DeliveryAddress.AddressLine2" class="control-label"></label>
+                    <input asp-for="DoctorDetails.DeliveryAddress.AddressLine2" class="form-control" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.BillingAddress.AddressLine2" class="control-label"></label>
+                    <input asp-for="DoctorDetails.BillingAddress.AddressLine2" class="form-control" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.DeliveryAddress.AddressLine3" class="control-label"></label>
+                    <input asp-for="DoctorDetails.DeliveryAddress.AddressLine3" class="form-control" />
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.BillingAddress.AddressLine3" class="control-label"></label>
+                    <input asp-for="DoctorDetails.BillingAddress.AddressLine3" class="form-control" />
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.DeliveryAddress.City" class="control-label"></label>
+                    <input asp-for="DoctorDetails.DeliveryAddress.City" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.DeliveryAddress.City" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.BillingAddress.City" class="control-label"></label>
+                    <input asp-for="DoctorDetails.BillingAddress.City" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.BillingAddress.City" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.DeliveryAddress.PostalCode" class="control-label"></label>
+                    <input asp-for="DoctorDetails.DeliveryAddress.PostalCode" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.DeliveryAddress.PostalCode" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorDetails.BillingAddress.PostalCode" class="control-label"></label>
+                    <input asp-for="DoctorDetails.BillingAddress.PostalCode" class="form-control" />
+                    <span asp-validation-for="DoctorDetails.BillingAddress.PostalCode" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="form-group">
+                    <input type="checkbox" id="chkAddress" onchange="CopyAddress()" />
+                    <label onclick="CopyAddress()">Is Billing Address Same as Delivery Address?</label>
+                </div>                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="d-table-cell">
+                <h4> Login Details </h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorLogin.UserName" class="control-label"></label>
+                    <input asp-for="DoctorLogin.UserName" class="form-control" />
+                    <span asp-validation-for="DoctorLogin.UserName" class="text-danger"></span>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label asp-for="DoctorLogin.Password" class="control-label"></label>
+                    <input asp-for="DoctorLogin.Password" class="form-control" type="password" />
+                    <span asp-validation-for="DoctorLogin.Password" class="text-danger"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

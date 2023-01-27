@@ -34,12 +34,54 @@ div td a, div a {
 .site-logo{
     width:120px;
 }
-.table-login{
-    margin:10px auto 10px auto;
-    width:400px;
-    display:block;
-    position:relative;
+h1{
+    font-size:30px;
+    text-align:center;
 }
+.table-login{
+    margin: 10px auto 10px auto;
+    width: 400px;
+    display: block;
+    position: relative;
+}
+.signup_form {
+    margin: 10px auto;    
+    width:700px;
+   
+}
+    .signup_form td {
+        padding-top:10px;
+        width: 350px;
+    }
+        .signup_form td h4, .signup_form td h5 {
+            color: #CE4D30;
+            margin-top:10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .signup_form td div {
+            margin-left:10px;
+        }
+        .signup_form td div label {
+            font-weight: bold;
+            color: #565553;
+        }
+            .signup_form td div input[type=submit] {
+                margin-top:20px;
+                height:40px;
+                border-radius:0px;
+                width:150px;
+                font-weight:bold;
+            }
+                .signup_form td div input[type=submit]:hover {
+                    background-color: white;
+                    color: #0d6efd;
+                }
+            .signup_form td div .form-control, .signup_form td div .form-select {
+                border-color: #CE4D30;
+                border-width: 2px;
+                border-radius: 0px;
+            }  
 .patient_links a {    
     width: 150px; 
     border-width: 1px !important;
@@ -74,13 +116,13 @@ div.patient_links a {
             background-color: white;
             color: #565553;
         }
-.patient_table{
-    margin-left:auto;
-    margin-right:auto;
+.patient_table {
+    margin-left: auto;
+    margin-right: auto;
 }
-.patient_table td{
-    width:350px;
-}
+    .patient_table td{
+        width: 350px;
+    }
     .patient_table td div label {
         color: #565553;
         font-weight:bold;
