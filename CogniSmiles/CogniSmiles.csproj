@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Email Templates\ForgottenCredentials.html" />
     <Content Remove="wwwroot\Email Templates\NotificationEmail.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Email Templates\ForgottenCredentials.html" />
     <None Include="wwwroot\Email Templates\NotificationEmail.html" />
     <None Include="wwwroot\Email Templates\ActivationEmail.html" />
   </ItemGroup>

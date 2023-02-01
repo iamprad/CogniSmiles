@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
-
-namespace CogniSmiles.Models
+﻿namespace CogniSmiles.Models
 {
     public class Login
     {

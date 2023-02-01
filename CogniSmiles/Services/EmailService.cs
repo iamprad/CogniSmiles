@@ -20,10 +20,11 @@ namespace CogniSmiles.Services
             _hostEnvironment = hostEnvironment;
             _config = config;
         }
-        public bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null)
+        public bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null, string userName = null)
         {
             string fileName = string.Empty;
             string subject = string.Empty;
+            string forgottenContent = string.Empty;
             switch (emailType)
             {
                 case EmailType.Activation:
@@ -33,6 +34,16 @@ namespace CogniSmiles.Services
                 case EmailType.Notification:
                     fileName = "NotificationEmail.html";
                     subject = "Patient Status Change - CogniSmiles";
+                    break;
+                case EmailType.ForogttenUserName:
+                    fileName = "ForgottenCredentials.html";
+                    subject = "Your Registered Username with CogniSmiles";
+                    forgottenContent =$"You Have requested to retrieve your username registered with Cognismiles Website. Your User Name is <b>{userName}</b>";
+                    break;
+                case EmailType.ForogttenPassword:
+                    fileName = "ForgottenCredentials.html";
+                    subject = "Your Reset Password Link - CogniSmiles";
+                    forgottenContent = $"You Have requested to reset your password in Cognismiles Website. Your Unique link to reset your password is <a href=\"https://{{DomainName}}/Doctors/ResetCredentials?id={UserID}\"> Reset Password </a>.";
                     break;
                 default:
                     break;
@@ -57,7 +68,9 @@ namespace CogniSmiles.Services
             var emailContents = new StreamReader(filestream).ReadToEnd();
             if(UserID != null)
                 emailContents = emailContents.Replace("{{UserID}}", UserID);
-            emailContents = emailContents.Replace("{{DomainName}}",_config.GetValue<string>("DomainName"));
+
+            var domainName = _config.GetValue<string>("DomainName");
+            emailContents = emailContents.Replace("{{DomainName}}",domainName);
 
             if(patientId != null)
             {
@@ -70,8 +83,11 @@ namespace CogniSmiles.Services
                     emailContents = emailContents.Replace("{{PracticeName}}", doctor?.PracticeName);
                     emailContents = emailContents.Replace("{{PatientID}}", patientId.ToString());
                 }
-            }                 
-
+            }
+            forgottenContent = forgottenContent.Replace("{{DomainName}}", domainName);
+            
+            emailContents = emailContents.Replace("{{EmailSubject}}", subject);
+            emailContents = emailContents.Replace("{{EmailContent}}", forgottenContent);
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(emailConfig.GetValue<string>("From")));
             email.To.Add(MailboxAddress.Parse(toEmail));
@@ -93,6 +109,8 @@ namespace CogniSmiles.Services
     public enum EmailType
     {
         Activation,
-        Notification
+        Notification,
+        ForogttenUserName,
+        ForogttenPassword
     }
 }
