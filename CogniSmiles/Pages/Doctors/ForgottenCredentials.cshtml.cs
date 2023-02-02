@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using CogniSmiles.Data;
 using CogniSmiles.Models;
 using CogniSmiles.Interfaces;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace CogniSmiles.Pages.Doctors
 {
@@ -18,6 +20,7 @@ namespace CogniSmiles.Pages.Doctors
         }
         public string Action;
         [BindProperty]
+        [Display(Name = "Email Addresss")]
         public string EmailAddress { get; set; }
         public string ErrorMessage { get; set; }
         public async Task<IActionResult> OnGetAsync(string action)

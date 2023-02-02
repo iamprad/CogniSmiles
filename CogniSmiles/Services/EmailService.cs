@@ -43,7 +43,7 @@ namespace CogniSmiles.Services
                 case EmailType.ForogttenPassword:
                     fileName = "ForgottenCredentials.html";
                     subject = "Your Reset Password Link - CogniSmiles";
-                    forgottenContent = $"You Have requested to reset your password in Cognismiles Website. Your Unique link to reset your password is <a href=\"https://{{DomainName}}/Doctors/ResetCredentials?id={UserID}\"> Reset Password </a>.";
+                    forgottenContent = $"You Have requested to reset your password in Cognismiles Website. Your Unique link to reset your password is <a href=\"https://[DomainName]/Doctors/ResetCredentials?userId={UserID}\"> Reset Password </a>.";
                     break;
                 default:
                     break;
@@ -84,7 +84,7 @@ namespace CogniSmiles.Services
                     emailContents = emailContents.Replace("{{PatientID}}", patientId.ToString());
                 }
             }
-            forgottenContent = forgottenContent.Replace("{{DomainName}}", domainName);
+            forgottenContent = forgottenContent.Replace("[DomainName]", domainName);
             
             emailContents = emailContents.Replace("{{EmailSubject}}", subject);
             emailContents = emailContents.Replace("{{EmailContent}}", forgottenContent);

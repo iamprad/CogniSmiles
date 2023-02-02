@@ -17,8 +17,6 @@ namespace CogniSmiles.Pages.Doctors
             _emailService = emailService;
         }
 
-        // [BindProperty]
-        //public Doctor Doctor { get; set; } = default!;
         public string? DoctorEmail { get; set; }
         public Guid? UserId { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
