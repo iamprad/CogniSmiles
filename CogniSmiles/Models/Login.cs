@@ -1,4 +1,6 @@
-﻿namespace CogniSmiles.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CogniSmiles.Models
 {
     public class Login
     {
@@ -12,6 +14,7 @@
         }
         public int Id { get; set; }
         public Guid UserId { get; set; }
+        [Display(Name ="User Name")]
         public string UserName { get; set; }
         public string Password { get; set; }
         public AuthType AuthType { get; set; }

@@ -35,8 +35,9 @@ div td a, div a {
     width:120px;
 }
 h1{
-    font-size:30px;
+    font-size:25px;
     text-align:center;
+    padding:10px;
 }
 .table-login{
     margin: 10px auto 10px auto;
@@ -53,9 +54,10 @@ h1{
         padding-top:10px;
         width: 350px;
     }
-        .signup_form td h4, .signup_form td h5 {
+        
+        .table-login td h4, .signup_form td h4, .signup_form td h5 {
             color: #CE4D30;
-            margin-top:10px;
+            margin-top: 10px;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -77,7 +79,7 @@ h1{
                     background-color: white;
                     color: #0d6efd;
                 }
-            .signup_form td div .form-control, .signup_form td div .form-select {
+            .table-login td div .form-control, .signup_form td div .form-control, .signup_form td div .form-select {
                 border-color: #CE4D30;
                 border-width: 2px;
                 border-radius: 0px;
@@ -122,11 +124,11 @@ div.patient_links {
                 background-color: white;
                 color: #565553;
             }
-.patient_table {
+.patient_table,.table-login {
     margin-left: auto;
     margin-right: auto;
 }
-    .patient_table td{
+    .patient_table td,.table-login td{
         width: 350px;
     }
     .patient_table td div label {
@@ -142,6 +144,17 @@ div.patient_links {
         border-color: #CE4D30;
         border-width: 2px;
         border-radius: 0px;
-    }  
+    }
+.tbl_files tr th {
+    color: #CE4D30;
+    text-align:center;
+}
+
+.tbl_files tr td, .tbl_files tr th {
+    border: solid;
+    border-color: #565553;
+    border-width: 2px;
+    padding: 10px;
+}
 
 
