@@ -6,43 +6,50 @@
 }
 
 <h1>View Files for Patient Record </h1>
-
-<table class="tbl_files">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientFiless[0].FileType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientFiless[0].FileName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatientFiless[0].DateUploaded)
-            </th>          
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PatientFiless)
-        {
+@if (Model.PatientFiless.Count > 0)
+{
+    <table class="tbl_files">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateUploaded)
-                </td>                
-                <td>                    
-                    <a asp-page="./DownLoadFile" asp-route-id="@item.Id">Download</a>
-                    <a asp-page="./DeleteFile" asp-route-id="@item.Id">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientFiless[0].FileType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientFiless[0].FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientFiless[0].DateUploaded)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PatientFiless)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateUploaded)
+                    </td>
+                    <td>
+                        <a asp-page="./DownLoadFile" asp-route-id="@item.Id">Download</a>
+                        <a asp-page="./DeleteFile" asp-route-id="@item.Id" asp-route-patientId="@Model.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h5> There are no files uploaded for this patient </h5>
+}
+    
 
 <h1>Upload Files for Patient Record </h1>
 

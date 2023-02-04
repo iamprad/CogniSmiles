@@ -103,7 +103,7 @@ h1{
 div.dashboard_links{
     width:400px;
     display:block;
-    margin:10px auto;
+    margin:10px 0px;
     height:50px;
 }
 div.patient_links {
@@ -146,8 +146,7 @@ div.patient_links {
         border-radius: 0px;
     }
 .tbl_files tr th {
-    color: #CE4D30;
-    text-align:center;
+    color: #CE4D30;    
 }
 
 .tbl_files tr td, .tbl_files tr th {

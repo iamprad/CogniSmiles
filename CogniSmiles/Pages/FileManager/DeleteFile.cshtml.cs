@@ -15,7 +15,7 @@ namespace CogniSmiles.Pages.FileManager
         {
             _context = context;
         }
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id,int patientId)
         {
             if (!IsAuthenticated)
                 return Page();
@@ -35,20 +35,7 @@ namespace CogniSmiles.Pages.FileManager
             _context.PatientFile.Remove(DeletionFile);
             _context.SaveChanges();
             
-            return Page();
-            
-        }       
-        public IActionResult OnPost()
-        {
-            string path = Path.Combine(DeletionFile.FilePath, DeletionFile.FileName);
-
-            //delete the File.
-            System.IO.File.Delete(path);
-            // remove file record
-            _context.PatientFile.Remove(DeletionFile);
-            _context.SaveChanges();
-
-            return Page();
+            return RedirectToPage("../FileManager/ManageFiles", new { id = patientId });            
         }
     }
 }

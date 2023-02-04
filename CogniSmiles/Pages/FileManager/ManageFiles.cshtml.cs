@@ -67,6 +67,8 @@ namespace CogniSmiles.Pages.FileManager
                 //Log ex
                 ViewData["UploadStatus"] = "File Upload Failed";
             }
+            PatientFiless = await _context.PatientFile.Where(file => file.PatientId == Id).ToListAsync();
+
             return Page();
         }
     }
