@@ -23,7 +23,7 @@ builder.Services.AddSession(options => {
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 52428800);
+builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 104857600);
 
 var app = builder.Build();
 
