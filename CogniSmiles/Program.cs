@@ -22,8 +22,12 @@ builder.Services.AddSession(options => {
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 157286400;
+}).UseIISIntegration();
 
-builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 157286400);
+//builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 157286400);
 
 var app = builder.Build();
 
