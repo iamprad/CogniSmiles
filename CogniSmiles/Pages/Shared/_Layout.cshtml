@@ -14,9 +14,19 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">
-                    <img class="site-logo" src="~/images/cognismiles_logo.jpeg" />
-                </a>
+                @if (Accessor.HttpContext != null && Convert.ToBoolean(Accessor.HttpContext.Session.GetString("isAuthenticated")))
+                {
+                    <a class="navbar-brand" asp-area="" asp-page="/Dashboard/Home">
+                        <img class="site-logo" src="~/images/cognismiles_logo.jpeg" />
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">
+                        <img class="site-logo" src="~/images/cognismiles_logo.jpeg" />
+                    </a>
+                }
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
