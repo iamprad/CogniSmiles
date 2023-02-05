@@ -25,7 +25,7 @@ builder.Services.AddSession(options => {
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.Limits.MaxRequestBodySize = 157286400;
-}).UseIISIntegration();
+});
 
 //builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 157286400);
 
