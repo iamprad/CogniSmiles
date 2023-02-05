@@ -1,17 +1,16 @@
 ﻿@page
 @using CogniSmiles.Models
 @model CogniSmiles.Pages.Dashboard.PatientCommentModel
-
 @{
     ViewData["Title"] = "Add / Update Comments on Patient Record";
 }
 
-<h2>View Comments </h2>
-    <hr />
+<h1>View Comments </h1>
+ <hr />
 <form method="post">
     @if (Model.DoctorComments.Count > 0)
     {
-        <table class="table">
+        <table class="cmts_table">
             <tbody>
                 @foreach (var item in Model.DoctorComments)
                 {
@@ -37,7 +36,7 @@
         <label class="text-black"> No comments added for this patient  </label>
     }
 
-<h2> Add Comments </h2>
+<h1> Add Comments </h1>
 <hr />
     <div class="row">
         <div class="col-md-4">
