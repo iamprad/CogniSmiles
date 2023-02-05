@@ -60,6 +60,8 @@ namespace CogniSmiles.Pages.Doctors
                     {
                         ErrorMessage = "Email has been sent to your registered email address";
                     }
+                    else
+                        ErrorMessage = "Failed to send Email. Contact Site Administrator";
                 }
             }
             else
