@@ -25,9 +25,10 @@ builder.Services.AddSession(options => {
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.Limits.MaxRequestBodySize = 157286400;
+    options.Limits.MaxRequestBufferSize= 157286400;
 });
 
-//builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 157286400);
+builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = 157286400);
 
 var app = builder.Build();
 
