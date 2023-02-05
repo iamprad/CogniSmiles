@@ -68,14 +68,14 @@ h1{
             font-weight: bold;
             color: #565553;
         }
-            .signup_form td div input[type=submit] {
-                margin-top:20px;
-                height:40px;
-                border-radius:0px;
-                width:150px;
-                font-weight:bold;
+            .signup_form td div input[type=submit], .add_cmts .form-group input[type=submit] {
+                margin-top: 20px;
+                height: 40px;
+                border-radius: 0px;
+                width: 150px;
+                font-weight: bold;
             }
-                .signup_form td div input[type=submit]:hover {
+                .signup_form td div input[type=submit]:hover, .add_cmts .form-group input[type=submit]:hover {
                     background-color: white;
                     color: #0d6efd;
                 }
@@ -124,7 +124,7 @@ div.patient_links {
                 background-color: white;
                 color: #565553;
             }
-.patient_table,.table-login {
+.patient_table, .table-login, .cmts_table {
     margin-left: auto;
     margin-right: auto;
 }
@@ -167,6 +167,31 @@ div.patient_links {
     margin-right:auto;
     margin-left:auto;
 }
-
-
+.cmts_table{
+    width:800px;
+}
+    .cmts_table tr td, .add_cmts .form-group textarea {
+        border: solid;
+        border-color: #CE4D30;
+        border-width: 2px;
+        padding: 5px;
+    }
+    .cmts_table tr td.td_cmts
+    {
+        height:60px;        
+        vertical-align:top;
+        margin:12px;
+    }
+        .cmts_table tr td label, .add_cmts .form-group label {
+            font-weight: bold;
+            color: #565553
+        }
+.add_cmts{
+    margin:10px auto;
+    width:800px;
+}
+    .add_cmts .form-group:last-child{
+       text-align:center;
+    }
+    
 

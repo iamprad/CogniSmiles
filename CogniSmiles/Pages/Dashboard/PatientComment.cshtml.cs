@@ -62,6 +62,7 @@ namespace CogniSmiles.Pages.Dashboard
                 var commentsNew = from dc in _context.Set<DoctorComment>() 
                                     join d in _context.Set<Doctor>() on dc.DoctorId equals d.Id
                                     where dc.PatientId == PatientId
+                                    orderby dc.CommentDate descending
                                   select new ViewCommentsModel() { CommentDate = dc.CommentDate, PatientId = dc.PatientId, DoctorId = dc.DoctorId, Comment = dc.Comment,PracticeName = d.PracticeName };
                 if (commentsNew != null)
                 {

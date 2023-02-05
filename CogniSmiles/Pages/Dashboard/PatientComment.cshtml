@@ -6,7 +6,6 @@
 }
 
 <h1>View Comments </h1>
- <hr />
 <form method="post">
     @if (Model.DoctorComments.Count > 0)
     {
@@ -15,16 +14,26 @@
                 @foreach (var item in Model.DoctorComments)
                 {
                     <tr>
-                        <td colspan="2">
-                            @Html.DisplayNameFor(model => model.DoctorComments[0].Comment) :  @Html.DisplayFor(modelItem => item.Comment)
+                        <td colspan="2" class="td_cmts">
+                            @Html.LabelFor(model => model.DoctorComments[0].Comment) : 
+                            <span>
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            </span>
+                            
                         </td>                        
                     </tr>
                     <tr>
-                        <td>
-                            @Html.DisplayNameFor(model => model.DoctorComments[0].PracticeName) : @Html.DisplayFor(modelItem => item.PracticeName)
+                        <td class="td_pname">
+                            @Html.LabelFor(model => model.DoctorComments[0].PracticeName) :
+                            <span>
+                                @Html.DisplayFor(modelItem => item.PracticeName)
+                            </span>
                         </td>
-                        <td>
-                            @Html.DisplayNameFor(model => model.DoctorComments[0].CommentDate): @Html.DisplayFor(modelItem => item.CommentDate)
+                        <td class="td_cdate">
+                            @Html.LabelFor(model => model.DoctorComments[0].CommentDate): 
+                            <span>
+                                @Html.DisplayFor(modelItem => item.CommentDate)
+                            </span>                            
                         </td>
                     </tr>
                 }
@@ -36,20 +45,18 @@
         <label class="text-black"> No comments added for this patient  </label>
     }
 
-<h1> Add Comments </h1>
-<hr />
-    <div class="row">
-        <div class="col-md-4">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-             <div class="form-group">
-                 <input type="hidden" asp-for="PatientId"/>
-                    <label asp-for="NewComment.Comment" class="control-label"></label>
-                    <textarea asp-for="PostedComment" class="form-control"></textarea>
-                    <span asp-validation-for="PostedComment" class="text-danger"></span>                
-             </div>
-             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" asp-page="PatientComment" asp-page-handler="AddComment"/>
-             </div>
+    <h1> Add Comments </h1>
+ 
+    <div class="add_cmts">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <input type="hidden" asp-for="PatientId" />
+            <label asp-for="NewComment.Comment" class="control-label"></label>
+            <textarea asp-for="PostedComment" class="form-control"></textarea>
+            <span asp-validation-for="PostedComment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" asp-page="PatientComment" asp-page-handler="AddComment" />
         </div>
     </div>
 </form>
