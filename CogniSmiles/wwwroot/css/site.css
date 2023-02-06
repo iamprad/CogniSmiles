@@ -124,7 +124,7 @@ div.patient_links {
                 background-color: white;
                 color: #565553;
             }
-.patient_table, .table-login, .cmts_table {
+.patient_table, .table-login, .cmts_table, .tbl_upload {
     margin-left: auto;
     margin-right: auto;
 }
@@ -155,20 +155,9 @@ div.patient_links {
     border-width: 2px;
     padding: 10px;
 }
-.uploadFiles{
-    width:250px;
-    margin-left:auto;
-    margin-right:auto;
-}
-.uploadFiles div button{    
-    width:100px;
-    display:block;
-    margin-top:10px;
-    margin-right:auto;
-    margin-left:auto;
-}
-.cmts_table{
-    width:800px;
+
+.cmts_table, .tbl_upload {
+    width: 800px;
 }
     .cmts_table tr td, .add_cmts .form-group textarea {
         border: solid;
@@ -193,5 +182,19 @@ div.patient_links {
     .add_cmts .form-group:last-child{
        text-align:center;
     }
-    
+.tbl_upload tr td{
+  padding:10px 0px;
+  vertical-align:top;
+}
+    .tbl_upload tr td .control-label {
+        font-weight: bold;
+        color: #565553;
+        margin-bottom:5px;
+        margin-right:5px;
+    }
+.tbl_upload tr td[colspan="2"]
+{
+    text-align:center;
+    vertical-align:central;
+}
 
