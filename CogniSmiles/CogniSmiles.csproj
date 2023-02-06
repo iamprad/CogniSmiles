@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -11,17 +11,6 @@
     <Content Remove="UploadedFiles\**" />
     <EmbeddedResource Remove="UploadedFiles\**" />
     <None Remove="UploadedFiles\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\Email Templates\ForgottenCredentials.html" />
-    <Content Remove="wwwroot\Email Templates\NotificationEmail.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Email Templates\ForgottenCredentials.html" />
-    <None Include="wwwroot\Email Templates\NotificationEmail.html" />
-    <None Include="wwwroot\Email Templates\ActivationEmail.html" />
   </ItemGroup>
 
   <ItemGroup>

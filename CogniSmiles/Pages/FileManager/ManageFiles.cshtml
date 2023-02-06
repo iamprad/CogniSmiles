@@ -59,7 +59,7 @@ else
             @if (Model.IsAdmin)
             {
                 <label class="radio_button">
-                    <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.Plan" />
+                    <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.Plan" checked="checked" />
                     Implant Plan
                 </label>
             }
