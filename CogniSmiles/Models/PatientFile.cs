@@ -16,6 +16,7 @@ namespace CogniSmiles.Models
     public enum FileType
     {
         DICOMFile = 0,
-        STLFile = 1
+        STLFile = 1,
+        Plan = 2
     }
 }

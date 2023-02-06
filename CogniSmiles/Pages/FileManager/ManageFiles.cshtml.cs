@@ -3,6 +3,7 @@ using CogniSmiles.Interfaces;
 using CogniSmiles.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace CogniSmiles.Pages.FileManager
 {
@@ -10,14 +11,25 @@ namespace CogniSmiles.Pages.FileManager
     {
         private readonly CogniSmilesContext _context;        
         private readonly IFileUploadService _fileUploadService;
+        private readonly IEmailService _emailService;
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
         public IList<PatientFile> PatientFiless { get; set; }
-        public ManageFilesModel(CogniSmilesContext context, IFileUploadService fileUploadService)
+        [BindProperty]
+        [Display(Name = "Patient Status")]
+        public PatientStatus PatientStatus { get; set; }
+
+        public DoctorComment NewComment { get; set; }
+        [BindProperty]
+        public string PostedComment { get; set; }
+
+        public ManageFilesModel(CogniSmilesContext context, IFileUploadService fileUploadService, IEmailService emailService)
         {
             _context = context;
             _fileUploadService = fileUploadService;
             PatientFiless = new List<PatientFile>();
+            _emailService = emailService;
+            NewComment = new DoctorComment();
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -49,13 +61,41 @@ namespace CogniSmiles.Pages.FileManager
             {
                 if (await _fileUploadService.UploadFile(Upload))
                 {
-                    ViewData["UploadStatus"] = "File Upload Successful";
+                    ViewData["UploadStatus"] = "File Upload Successful. ";
+                    // Add new file
                     NewPatientFile.PatientId = Id;
                     NewPatientFile.FileName = Upload.FileName;
                     NewPatientFile.FilePath = _fileUploadService.FilePath;
                     NewPatientFile.DateUploaded = DateTime.Now;
                     _context.PatientFile.Add(NewPatientFile);
+
+                    // Add new Comment
+                    NewComment.CommentDate = DateTime.Now;
+                    NewComment.PatientId = Id;
+                    NewComment.DoctorId = DoctorId;
+                    NewComment.Comment = PostedComment;
+                    _context.DoctorComment.Add(NewComment);                    
                     await _context.SaveChangesAsync();
+
+                    ViewData["UploadStatus"] += "Dentist Comments Updated. ";
+
+
+                    // Send email notification to Aditya (Admin)
+                    var adminId = _context.Login.Where(l => l.AuthType == AuthType.Admin).Select(d => d.DoctorId).FirstOrDefault();
+                    var docEmail = _context.Doctor.Where(d1 => d1.Id == adminId).Select(d => d.Email).FirstOrDefault();
+
+                    if (IsAdmin && PatientStatus == (PatientStatus.AmendPlan | PatientStatus.ApprovePlan))
+                    {
+                        //Get Doctor Email
+                        docEmail = _context.Doctor.Where(d1 => d1.Id == DoctorId).Select(d => d.Email).FirstOrDefault(); ;
+                    }
+
+                    if(_emailService.SendEmail(Services.EmailType.Notification, null, docEmail, Id))
+                    {
+                        ViewData["UploadStatus"] += "Notification Sent to Admin";
+                    }
+                    else
+                        ViewData["UploadStatus"] += "Notification failed to Send to Admin. Contact them to notify";
                 }
                 else
                 {
@@ -65,9 +105,24 @@ namespace CogniSmiles.Pages.FileManager
             catch (Exception ex)
             {
                 //Log ex
-                ViewData["UploadStatus"] = "File Upload Failed";
+                ViewData["UploadStatus"] = "File Upload Failed. Error:" + ex.Message;
             }
             PatientFiless = await _context.PatientFile.Where(file => file.PatientId == Id).ToListAsync();
+
+            return Page();
+        }
+        public async Task<IActionResult> OnPostAddCommentAsync()
+        {
+            if (PostedComment == null)
+                return Page();
+
+            NewComment.CommentDate = DateTime.Now;
+            NewComment.PatientId = Id;
+            NewComment.DoctorId = DoctorId;
+            NewComment.Comment = PostedComment;
+            _context.DoctorComment.Add(NewComment);
+
+            await _context.SaveChangesAsync();
 
             return Page();
         }
