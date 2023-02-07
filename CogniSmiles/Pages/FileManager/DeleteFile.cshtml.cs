@@ -1,7 +1,7 @@
 using CogniSmiles.Data;
 using CogniSmiles.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using System.IO;
 namespace CogniSmiles.Pages.FileManager
 {
     public class DeleteFileModel : AuthModel
@@ -28,9 +28,11 @@ namespace CogniSmiles.Pages.FileManager
 
             // Build the File Path.
             string path = Path.Combine(DeletionFile.FilePath, DeletionFile.FileName);
-
-            //delete the File.
-            System.IO.File.Delete(path);
+            if(System.IO.File.Exists(path))
+            {
+                //delete the File.
+                System.IO.File.Delete(path);
+            }            
             // remove file record
             _context.PatientFile.Remove(DeletionFile);
             _context.SaveChanges();

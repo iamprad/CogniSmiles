@@ -36,7 +36,7 @@ namespace CogniSmiles.Pages.FileManager
         {
             // Authorize             
             if (!IsAuthenticated)
-                return NotFound();
+                return RedirectToPage("../Doctors/Login");
            
             PatientFiless = await _context.PatientFile.Where(file => file.PatientId == Id).ToListAsync();
             return Page();
