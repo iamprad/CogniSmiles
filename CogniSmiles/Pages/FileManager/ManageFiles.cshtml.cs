@@ -92,7 +92,7 @@ namespace CogniSmiles.Pages.FileManager
                     var adminId = _context.Login.Where(l => l.AuthType == AuthType.Admin).Select(d => d.DoctorId).FirstOrDefault();
                     var docEmail = _context.Doctor.Where(d1 => d1.Id == adminId).Select(d => d.Email).FirstOrDefault();
 
-                    if (IsAdmin && PatientStatus == (PatientStatus.AmendPlan | PatientStatus.ApprovePlan))
+                    if (IsAdmin)
                     {
                         //Get Doctor Email
                         docEmail = _context.Doctor.Where(d1 => d1.Id == DoctorId).Select(d => d.Email).FirstOrDefault(); ;
@@ -100,7 +100,7 @@ namespace CogniSmiles.Pages.FileManager
 
                     if(_emailService.SendEmail(Services.EmailType.Notification, null, docEmail, Id))
                     {
-                        ViewData["UploadStatus"] += "Notification Sent to Admin";
+                        ViewData["UploadStatus"] += "Notification Sent via email";
                     }
                     else
                         ViewData["UploadStatus"] += "Notification failed to Send to Admin. Contact them to notify";
