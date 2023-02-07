@@ -80,6 +80,7 @@ namespace CogniSmiles.Services
                     var doctor = _context.Doctor.Where(d => d.Id == patient.DoctorId).FirstOrDefault();
 
                     emailContents = emailContents.Replace("{{PatientCode}}", patient?.PatientCode);
+                    emailContents = emailContents.Replace("{{PatientStatus}}", patient?.PatientStatus.ToString());
                     emailContents = emailContents.Replace("{{PracticeName}}", doctor?.PracticeName);
                     emailContents = emailContents.Replace("{{PatientID}}", patientId.ToString());
                 }

@@ -197,4 +197,17 @@ div.patient_links {
     text-align:center;
     vertical-align:central;
 }
-
+    .tbl_upload tr td.submit {
+        text-align: center;     
+        vertical-align:bottom;
+    }
+    .tbl_upload tr td input, .tbl_upload tr td textarea {
+        border: 2px solid #CE4D30;
+        border-radius: 0px;
+    }
+.noFiles {
+    border: 2px solid #CE4D30;
+    text-align: center;
+    color: #565553;
+    padding: 5px;
+}

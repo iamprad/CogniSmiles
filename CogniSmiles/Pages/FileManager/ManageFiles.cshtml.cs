@@ -75,10 +75,18 @@ namespace CogniSmiles.Pages.FileManager
                     NewComment.DoctorId = DoctorId;
                     NewComment.Comment = PostedComment;
                     _context.DoctorComment.Add(NewComment);                    
+                    
+
+                    // Update patient status
+                    var patient = _context.Patient.Where(p => p.Id== Id).FirstOrDefault();
+                    if (patient != null)
+                    {
+                        patient.PatientStatus = PatientStatus;
+                        _context.Patient.Update(patient);
+                    }
                     await _context.SaveChangesAsync();
 
                     ViewData["UploadStatus"] += "Dentist Comments Updated. ";
-
 
                     // Send email notification to Aditya (Admin)
                     var adminId = _context.Login.Where(l => l.AuthType == AuthType.Admin).Select(d => d.DoctorId).FirstOrDefault();

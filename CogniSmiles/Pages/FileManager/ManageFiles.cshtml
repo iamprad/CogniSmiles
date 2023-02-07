@@ -18,6 +18,9 @@
                     @Html.DisplayNameFor(model => model.PatientFiless[0].FileName)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.PatientFiless[0].ScanTakenDate)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.PatientFiless[0].DateUploaded)
                 </th>
                 <th></th>
@@ -34,6 +37,9 @@
                         @Html.DisplayFor(modelItem => item.FileName)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.ScanTakenDate)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.DateUploaded)
                     </td>
                     <td>
@@ -47,7 +53,9 @@
 }
 else
 {
-    <h5> There are no files uploaded for this patient </h5>
+    <div class="noFiles">
+        <h5> There are no files uploaded for this patient </h5>
+    </div>    
 }
 
 <h1>Upload Files for Patient Record </h1>
@@ -67,7 +75,7 @@ else
                 else
                 {
                     <label class="radio_button">
-                        <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.DICOMFile" />
+                        <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.DICOMFile" checked="checked" />
                         DICOMFile
                     </label>
                     <label class="radio_button">
@@ -81,7 +89,7 @@ else
                 @if (Model.IsAdmin)
                 {
                     <label class="radio_button">
-                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.MoreInfoRequested" checked />
+                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.MoreInfoRequested"  checked="checked" />
                         More Info Requested
                     </label>
                     <label class="radio_button">
@@ -92,7 +100,7 @@ else
                 else
                 {
                     <label class="radio_button">
-                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.AmendPlan" />
+                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.AmendPlan" checked="checked" />
                         Amend Plan
                     </label>
                     <label class="radio_button">
@@ -118,7 +126,12 @@ else
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td>
+                <label asp-for="NewPatientFile.ScanTakenDate" class="control-label"></label>
+                <input type="date" asp-for="NewPatientFile.ScanTakenDate" class="form-control" />
+                <span asp-validation-for="NewPatientFile.ScanTakenDate" class="text-danger"></span>
+            </td>
+            <td class="submit">
                 <button type="submit" class="btn-success">Submit</button>
             </td>
         </tr>

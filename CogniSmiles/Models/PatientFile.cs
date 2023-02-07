@@ -11,6 +11,7 @@ namespace CogniSmiles.Models
         [Display(Name = "File Type")]
         public FileType FileType { get; set; }
         public string? FilePath { get; set; }
+        public DateTime? ScanTakenDate { get; set; }
         public DateTime DateUploaded { get; set; }
     }
     public enum FileType
