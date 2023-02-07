@@ -203,7 +203,7 @@ div.patient_links {
     }
     .tbl_upload tr td input, .tbl_upload tr td textarea {
         border: 2px solid #CE4D30;
-        border-radius: 0px;
+        border-radius: 0px;        
     }
 .noFiles {
     border: 2px solid #CE4D30;
