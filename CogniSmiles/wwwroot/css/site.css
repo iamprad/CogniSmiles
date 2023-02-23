@@ -211,3 +211,18 @@ div.patient_links {
     color: #565553;
     padding: 5px;
 }
+.homePage_bg {
+    background-image: url('../images/cognismiles_bg.jpg');
+    background-size: contain;
+    height: 600px;  
+    padding:15px;
+}
+.homeButtons{
+    padding:10px;
+    position:relative;
+    float:right;
+}
+.homeButtons a{
+    margin-left:15px;
+    border-radius:0px;
+}
