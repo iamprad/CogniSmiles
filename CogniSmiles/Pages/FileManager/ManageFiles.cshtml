@@ -72,17 +72,16 @@ else
                         Implant Plan
                     </label>
                 }
-                else
-                {
-                    <label class="radio_button">
-                        <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.DICOMFile" checked="checked" />
-                        DICOMFile
-                    </label>
-                    <label class="radio_button">
-                        <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.STLFile" />
-                        STLFile
-                    </label>
-                }
+            
+                <label class="radio_button">
+                    <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.DICOMFile" checked="checked" />
+                    DICOMFile
+                </label>
+                <label class="radio_button">
+                    <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.STLFile" />
+                    STLFile
+                </label>
+                
             </td>
             <td>
                 <label asp-for="@Model.PatientStatus" class="control-label"></label>
