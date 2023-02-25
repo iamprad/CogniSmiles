@@ -98,7 +98,7 @@ namespace CogniSmiles.Pages.FileManager
                         docEmail = _context.Doctor.Where(d1 => d1.Id == DoctorId).Select(d => d.Email).FirstOrDefault(); ;
                     }
 
-                    if(_emailService.SendEmail(Services.EmailType.Notification, null, docEmail, Id))
+                    if(_emailService.SendEmail(Services.EmailType.Notification, null, docEmail, Id, DoctorId))
                     {
                         ViewData["UploadStatus"] += "Notification Sent via email";
                     }

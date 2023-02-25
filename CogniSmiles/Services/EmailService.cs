@@ -20,7 +20,7 @@ namespace CogniSmiles.Services
             _hostEnvironment = hostEnvironment;
             _config = config;
         }
-        public bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null, string userName = null)
+        public bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null,int? docId = null, string userName = null)
         {
             string fileName = string.Empty;
             string subject = string.Empty;
@@ -77,7 +77,10 @@ namespace CogniSmiles.Services
                 var patient = _context.Patient.Where(p => p.Id == patientId).FirstOrDefault();
                 if (patient != null)
                 {
-                    var doctor = _context.Doctor.Where(d => d.Id == patient.DoctorId).FirstOrDefault();
+                    var doctorId = patient.DoctorId;
+                    if (docId != null)
+                        doctorId = (int) docId; 
+                    var doctor = _context.Doctor.Where(d => d.Id == doctorId).FirstOrDefault();
 
                     emailContents = emailContents.Replace("{{PatientCode}}", patient?.PatientCode);
                     emailContents = emailContents.Replace("{{PatientStatus}}", patient?.PatientStatus.ToString());

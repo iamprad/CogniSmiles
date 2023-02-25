@@ -4,7 +4,7 @@ namespace CogniSmiles.Interfaces
 {
     public interface IEmailService
     {
-        bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null, string userName = null);
+        bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null,int? docId = null, string userName = null);
     }
 }
 
