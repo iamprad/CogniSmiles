@@ -52,14 +52,14 @@
             <td>
                 <div class="form-group">
                     <label asp-for="Patient.ImplantDiameter" class="control-label"></label>
-            <input asp-for="Patient.ImplantDiameter" class="form-control" />
+                    <input asp-for="Patient.ImplantDiameter" class="form-control" type="number" step=".10" />
                     <span asp-validation-for="Patient.ImplantDiameter" class="text-danger"></span>
                 </div>
             </td>
             <td>
                 <div class="form-group">
                     <label asp-for="Patient.ImplantLength" class="control-label"></label>
-                    <input asp-for="Patient.ImplantLength" class="form-control" />
+                    <input asp-for="Patient.ImplantLength" class="form-control" type="number" step=".10" />
                     <span asp-validation-for="Patient.ImplantLength" class="text-danger"></span>
                 </div>
             </td>

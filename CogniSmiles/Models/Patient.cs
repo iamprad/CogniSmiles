@@ -16,9 +16,9 @@ namespace CogniSmiles.Models
         [Display(Name = "Implant System")]
         public string? ImplantSystem { get; set; }
         [Display(Name = "Implant Diameter")]
-        public int? ImplantDiameter { get; set; }
+        public decimal? ImplantDiameter { get; set; }
         [Display(Name = "Implant Length")]
-        public int? ImplantLength { get; set; }
+        public decimal? ImplantLength { get; set; }
         public string? DicomFile { get; set; }
         public string? StlIosFile { get; set; }
         [Display(Name = "Patient Status")]
