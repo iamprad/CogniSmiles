@@ -103,7 +103,11 @@ else
                 else
                 {
                     <label class="radio_button">
-                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.AmendPlan" checked="checked" />
+                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.AwaitingPlanning" checked="checked" />
+                        Awaiting Planning
+                    </label>
+                    <label class="radio_button">
+                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.AmendPlan"/>
                         Amend Plan
                     </label>
                     <label class="radio_button">
