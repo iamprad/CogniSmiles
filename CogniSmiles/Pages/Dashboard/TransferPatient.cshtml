@@ -1,0 +1,40 @@
+﻿@page
+@using CogniSmiles.Models
+@model CogniSmiles.Pages.Dashboard.TransferPatientModel
+
+@{
+    ViewData["Title"] = "Transfer Patient Record";
+}
+<h1>Transfer Patient Record</h1>
+
+<hr />
+ <form method="post">
+    <input type="hidden" asp-for="PatientId" />
+    <table class="tp_table">
+        <tr>
+            <td>
+                <span>
+                    Patient with Code <b>@Model.PatientCode</b> is currently registered with Practice <b> @Model.PracticeName </b>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span> Click Confirm button below, If you wanted to move <b> @Model.PatientCode </b> to <b>@Model.NewPractice</b> </span>
+            </td>
+           
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    <input type="submit" value="Transfer" class="btn btn-primary float-end"/>
+                </div>
+            </td>
+        </tr>
+        
+     </table>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

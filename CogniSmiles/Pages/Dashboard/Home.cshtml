@@ -9,66 +9,107 @@
     }
 </div>
 
-<h1>List of Patient Records</h1>
 
-<table class="table">
-    <thead>
+ <form method="post">
+    <table class="patientSearch">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].PatientCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].SurgicalGuideReturnDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].ImplantSite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].ImplantSystem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].ImplantDiameter)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].ImplantLength)
-            </th>            
-            <th>
-                @Html.DisplayNameFor(model => model.Patient[0].PatientStatus)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Patient) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SurgicalGuideReturnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImplantSite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImplantSystem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImplantDiameter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImplantLength)
-            </td>            
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientStatus)
-            </td>            
-            <td class="patient_links">
-               @* <a asp-page="./UpdatePatient" asp-route-id="@item.Id">Update Patient </a> *@
-                <a asp-page="./PatientComment" asp-route-id="@item.Id">Dentist Comments </a> 
-                <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">View / Upload Files</a>
-                <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete Patient</a>
+            <td colspan="2">
+                <h5> Search Patient by Patient code or Registered Practice </h5>
             </td>
         </tr>
+        <tr>        
+            <td>
+                <div class="form-group">
+                   
+                    <input asp-for="PatientSearchTerm" class="form-control" />
+                </div>
+            </td>           
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+<h1>List of Patient Records</h1>
+@if (Model.PatientList.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].PatientCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].PracticeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].SurgicalGuideReturnDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].ImplantSite)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].ImplantSystem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].ImplantDiameter)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].ImplantLength)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].PatientStatus)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PatientList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatientCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PracticeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SurgicalGuideReturnDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImplantSite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImplantSystem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImplantDiameter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImplantLength)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.PatientStatus)
+                    </th>
+                    <td class="patient_links">
+                        @if (Model.IsAdmin)
+                        {
+                            <a asp-page="./TransferPatient" asp-route-id="@item.Id">Transfer Patient </a>
+                        }
+                        <a asp-page="./PatientComment" asp-route-id="@item.Id">Dentist Comments </a>
+                        <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">View / Upload Files</a>
+                        <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete Patient</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <span class="noRecords"> No Patient Records Found </span>
+}
