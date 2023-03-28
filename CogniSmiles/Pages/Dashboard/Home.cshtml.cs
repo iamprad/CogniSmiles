@@ -55,6 +55,7 @@ namespace CogniSmiles.Pages.Dashboard
                                   Id = patient.Id,
                                   DoctorId = patient.DoctorId,
                                   PracticeName = doctor.PracticeName,
+                                  DentistName = doctor.FullName,
                                   PatientCode = patient.PatientCode,
                                   SurgicalGuideReturnDate = patient.SurgicalGuideReturnDate,
                                   ImplantSite = patient.ImplantSite,
@@ -65,7 +66,7 @@ namespace CogniSmiles.Pages.Dashboard
                               };
             if(!string.IsNullOrEmpty(PatientSearchTerm))
             {
-                patientData = patientData.Where( p => p.PatientCode.Contains(PatientSearchTerm) || p.PracticeName.Contains(PatientSearchTerm) );
+                patientData = patientData.Where( p => p.PatientCode.Contains(PatientSearchTerm) || p.PracticeName.Contains(PatientSearchTerm) || p.DentistName.Contains(PatientSearchTerm));
             }
             if (IsAdmin)
             {
@@ -80,7 +81,9 @@ namespace CogniSmiles.Pages.Dashboard
     public class PatientData : Patient
     {
         [Display(Name = "Practice Name")]
-        public string PracticeName;
+        public string PracticeName { get; set; }
+        [Display(Name ="Dentist Name")]
+        public string DentistName { get; set; }
     }
    
 }

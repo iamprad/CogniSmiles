@@ -14,7 +14,7 @@
     <table class="patientSearch">
         <tr>
             <td colspan="2">
-                <h5> Search Patient by Patient code or Registered Practice </h5>
+                <h5> Search Patient by Patient code or Registered Practice  or Dentist Name </h5>
             </td>
         </tr>
         <tr>        
@@ -42,6 +42,9 @@
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.PatientList[0].PatientCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientList[0].DentistName)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PatientList[0].PracticeName)
@@ -73,6 +76,9 @@
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.PatientCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DentistName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PracticeName)
