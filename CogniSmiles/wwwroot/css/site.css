@@ -234,11 +234,71 @@ div.patient_links {
     padding:15px;
 }
 .homeButtons{
-    padding:10px;
+    padding: 10px;
+    position: relative;
+    float: right;
+}
+    .homeButtons a, .sinusLift_bg a {
+        margin-left: 15px;
+        border-radius: 0px;
+    }
+.sinusLift_bg {
+    background-image: url('../images/sinus_lift_course1.jpeg');
+    background-size: contain;
+    width: 48%;
+    height: 500px;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+}
+.sinusLift_course {
+    position: relative;
+    display: flex;
+}
+.sl_course {
+    width: 48%;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    height:500px;
     position:relative;
-    float:right;
 }
-.homeButtons a{
-    margin-left:15px;
-    border-radius:0px;
+    .sl_course .course_title {
+        font-size: 24px;
+        vertical-align: top;
+        font-weight:bold;
+    }
+    .sl_course .course_desc{
+        margin-top:25px;
+        text-align:center;
+        height:300px;
+        padding:10px;
+        font-size:20px;
+    }
+    .sl_course a {
+        border-radius: 0px;
+        position: absolute;
+        bottom: 10%;
+        left: 37%;
+        background-color: #CE4D30;
+        border:0px;
+    }
+
+.course_date {
+    margin: 10px auto 10px auto;
+    width: 600px;
+    display: block;
+    font-size:16px;
 }
+    .course_date tr td {
+        height: 30px;
+        border: 2px solid #CE4D30;
+        padding: 5px;
+    }
+    .course_date tr td:first-child {
+        width: 30%;
+        font-weight:bold;
+    }
+    .course_date tr td:last-child {
+        width: 70%;
+    }

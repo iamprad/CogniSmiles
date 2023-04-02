@@ -1,0 +1,153 @@
+﻿@page
+@model CogniSmiles.Pages.Courses.RegisterModel
+@{
+}
+<h1>Plan for Perfection- Sinus Lift Course and digital concepts</h1>
+<table class="course_date">
+    <tr>
+        <td>Date</td>
+        <td>19th &amp; 20th May 2023</td>
+    </tr>
+    <tr>
+        <td>Venue</td>
+        <td>Vivo Dental Lab, 15 Myddelton Rd, London, N8 7PY</td>
+    </tr>
+    <tr>
+        <td>Course Fee</td>
+        <td>&pound; 1650</td>
+    </tr>
+</table>
+<table class="course_speakers">
+    <tr>
+        <td colspan="2">Speakers</td>
+    </tr>
+    <tr>
+        <td class="speaker">
+            <span class="name">
+                Dr Darsha Boindala
+            </span>
+            <span class="qualifications">
+                MBBS, BDS, MFDS, MSc
+            </span>
+        </td>
+        <td class="speaker">
+            <span class="name">
+                Dr Aditya Dubagunta
+            </span>
+            <span class="qualifications">
+                BDS, MSc Oral Pathology, MSC Dent Implantology, <br/>
+                PgD Aesthetic Dentistry, PgC Restorative Dentistry, MBA-HCM
+            </span>
+        </td>
+    </tr>
+</table>
+<table class="course_details">
+    <tr>
+        <td colspan="2"> Day 1</td>
+        <td colspan="2"> Day 2</td>
+    </tr>
+    <tr>
+        <td class="d1-time">09:00 - 10:00</td>
+        <td class="d1-topic">Introduction</td>
+        <td class="d2-time">09:00 - 10:30</td>
+        <td class="d2-topic">Internal sinus lift- Magnetic mallet and DBE kit on models </td>
+    </tr>
+    <tr>
+        <td class="d1-time">10:00 - 11:00</td>
+        <td class="d1-topic">Sinus lift indications and contraindications</td>
+        <td class="d2-time">10:30 - 11:00</td>
+        <td class="d2-topic">Coffee Break </td>
+    </tr>
+    <tr>
+        <td class="d1-time">11:00 - 11:30</td>
+        <td class="d1-topic">Coffee Break</td>
+        <td class="d2-time">11:30 - 13:00</td>
+        <td class="d2-topic">External sinus lift- Hands on Eggs and Pigs heads </td>
+    </tr>
+    <tr>
+        <td class="d1-time">11:30 - 13:00</td>
+        <td class="d1-topic">Sinus Anatomy</td>
+        <td class="d2-time">13:00 - 14:00</td>
+        <td class="d2-topic">Lunch Break </td>
+    </tr>
+    <tr>        
+        <td class="d1-time">13:00 - 14:00</td>
+        <td class="d1-topic">Lunch Break </td>
+        <td class="d2-time">14:00 - 17:00</td>
+        <td class="d2-topic">External sinus lift continuation</td>
+    </tr>
+    <tr>
+        <td class="d1-time">14:00 - 15:00</td>
+        <td class="d1-topic">Sinus lift complications </td>
+    </tr>
+    <tr>
+        <td class="d1-time">15:00 - 15:30</td>
+        <td class="d1-topic">Coffee Break </td>
+    </tr>
+    <tr>
+        <td class="d1-time">15:30 - 16:30</td>
+        <td class="d1-topic">Medico-legal issues </td>
+    </tr>
+     <tr>
+        <td class="d1-time">16:30 - 17:30</</td>
+        <td class="d1-topic">Digital aspects</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            <div class="paypal_button">
+                <!-- Replace "test" with your own sandbox Business account app client ID -->
+                <script src="https://www.paypal.com/sdk/js?client-id=AabTi33DQJoumj2d8YwcYQrIGdMmCP1jxZXf3epNIJpmMCfeu-jWLNiUI-2-6rVTHXT5XV_j5Pcc_n1G&currency=GBP&locale=en_GB"></script>
+                <!-- Set up a container element for the button -->
+                <div id="paypal-button-container"></div>
+                <script>
+                    paypal.Buttons({
+                      // Order is created on the server and the order id is returned
+                      createOrder() {
+                        return fetch("/my-server/create-paypal-order", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          // use the "body" param to optionally pass additional order information
+                          // like product skus and quantities
+                          body: JSON.stringify({
+                            cart: [
+                              {
+                                sku: "SINUS_LIFT_COURSE_LONDON",
+                                quantity: "1",
+                              },
+                            ],
+                          }),
+                        })
+                        .then((response) => response.json())
+                        .then((order) => order.id);
+                      },
+                      // Finalize the transaction on the server after payer approval
+                      onApprove(data) {
+                        return fetch("/my-server/capture-paypal-order", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            orderID: data.orderID
+                          })
+                        })
+                        .then((response) => response.json())
+                        .then((orderData) => {
+                          // Successful capture! For dev/demo purposes:
+                          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                          const transaction = orderData.purchase_units[0].payments.captures[0];
+                          alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                          // When ready to go live, remove the alert and show a success message within this page. For example:
+                          // const element = document.getElementById('paypal-button-container');
+                          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                          // Or go to another URL:  window.location.href = 'thank_you.html';
+                        });
+                      }
+                    }).render('#paypal-button-container');
+                </script>
+            </div>
+        </td>
+    </tr>
+</table>
