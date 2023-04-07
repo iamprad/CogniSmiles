@@ -20,6 +20,7 @@ namespace CogniSmiles.Data
         public DbSet<PatientFile> PatientFile { get; set; } = default!; 
         public DbSet<DoctorComment> DoctorComment { get; set; } = default!;
         public DbSet<PostalAddress> PostalAddress { get; set; } = default!;
+        public DbSet<CoursePayment> CoursePayment { get; set; } = default!;
 
     }
 }

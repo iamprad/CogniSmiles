@@ -4,6 +4,7 @@ using CogniSmiles.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CogniSmiles.Migrations
 {
     [DbContext(typeof(CogniSmilesContext))]
-    partial class CogniSmilesContextModelSnapshot : ModelSnapshot
+    [Migration("20230407164309_CoursePaymentTable")]
+    partial class CoursePaymentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,9 +45,6 @@ namespace CogniSmiles.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PayerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentDate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentError")
