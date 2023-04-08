@@ -5,20 +5,40 @@
 }
 <h1>@ViewData["Title"]</h1>
 <table class="course_date">
-    <tr>
-        <td>Payment Reference</td>
-        <td>@Model.coursePayment.PaymentID</td>
-    </tr>
-    <tr>
-        <td>Course Fee</td>
-        <td>@Model.coursePayment.CourseFee</td>
-    </tr>
-    <tr>
-        <td>Payment Status</td>
-        <td>@Model.coursePayment.PaymentStatus</td>
-    </tr>
-    <tr>
-        <td>Payment Date</td>
-        <td>@Model.coursePayment.PaymentDate</td>
-    </tr>
+    @if(Model.paymentCancelled)
+    {
+        <tr>
+            <td colspan="2">
+                Payment has been cancelled by the user. if you still wanted to pay for a course, please start again.
+            </td>
+        </tr>
+    }
+    else if (Model.coursePayment != null)
+    {
+        <tr>
+            <td>Payment Reference</td>
+            <td>@Model.coursePayment.PaymentID</td>
+        </tr>
+        <tr>
+            <td>Course Fee</td>
+            <td>@Model.coursePayment.CourseFee</td>
+        </tr>
+        <tr>
+            <td>Payment Status</td>
+            <td>@Model.coursePayment.PaymentStatus</td>
+        </tr>
+        <tr>
+            <td>Payment Date</td>
+            <td>@Model.coursePayment.PaymentDate</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td colspan="2">
+                Failed to caputre payment information. if you still wanted to pay for a course, please start again.
+            </td>
+        </tr>
+    }
+
 </table>

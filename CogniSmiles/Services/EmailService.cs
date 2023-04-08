@@ -58,7 +58,14 @@ namespace CogniSmiles.Services
             
             // configure email data
             var emailConfig = _config.GetSection("EmailConfiguration");
-            var toEmail = string.Empty;
+
+            var toEmail = config.GetValueOrDefault("ToEmail");
+            
+            var docId = config.GetValueOrDefault("DoctorID");
+
+            if (string.IsNullOrEmpty(toEmail?.ToString()))
+                toEmail = _context.Doctor.Where(d1 => d1.Id == Convert.ToInt32(docId)).Select(d => d.Email).FirstOrDefault(); 
+
             string configToEmail = emailConfig.GetValue<string>("ToEmail");
             if (!string.IsNullOrEmpty(configToEmail))
                 toEmail = configToEmail;
@@ -81,7 +88,7 @@ namespace CogniSmiles.Services
             var domainName = _config.GetValue<string>("DomainName");
             emailContents = emailContents.Replace("{{DomainName}}",domainName);
             var patientId = config.GetValueOrDefault("PatientID");
-            var docId = config.GetValueOrDefault("DoctorID");
+            
             if (patientId != null)
             {
                 var patient = _context.Patient.Where(p => p.Id == Convert.ToInt32(patientId)).FirstOrDefault();
@@ -117,7 +124,7 @@ namespace CogniSmiles.Services
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(emailConfig.GetValue<string>("From")));
-            email.To.Add(MailboxAddress.Parse(toEmail));
+            email.To.Add(MailboxAddress.Parse(toEmail?.ToString()));
             string subjectPrefix = emailConfig.GetValue<string>("SubjectPrefix");
             if (!string.IsNullOrEmpty(subjectPrefix))
                 subject = subjectPrefix + subject;
