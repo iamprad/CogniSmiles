@@ -52,10 +52,16 @@ namespace CogniSmiles.Pages.Doctors
                 {
                     var userId = login.UserId;
                     bool emailSent = false;
-                    if(action == "username")
-                        emailSent = _emailService.SendEmail(Services.EmailType.ForogttenUserName, login.UserId.ToString(), doctor.Email,null,null,login.UserName);
+                    var config = new Dictionary<string, object>()
+                    {
+                        {"ToEmail", doctor.Email },
+                        {"UserID", login.UserId.ToString()},
+                        {"UserName",login.UserName }
+                    };
+                    if (action == "username")
+                        emailSent = _emailService.SendEmail(Services.EmailType.ForogttenUserName, config);
                     else if(action == "password")
-                        emailSent = _emailService.SendEmail(Services.EmailType.ForogttenPassword, login.UserId.ToString(), doctor.Email, null,null, login.UserName);
+                        emailSent = _emailService.SendEmail(Services.EmailType.ForogttenPassword,config);
                     if(emailSent)
                     {
                         ErrorMessage = "Email has been sent to your registered email address";

@@ -15,6 +15,7 @@ builder.Services.AddDbContext<CogniSmilesContext>(options =>
 
 builder.Services.AddTransient<IFileUploadService, FileUploadLocalService>();
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {

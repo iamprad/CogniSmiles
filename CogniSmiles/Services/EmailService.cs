@@ -6,6 +6,8 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using CogniSmiles.Data;
 using CogniSmiles.Models;
+using PayPal.Api;
+using System.Numerics;
 
 namespace CogniSmiles.Services
 {
@@ -20,11 +22,12 @@ namespace CogniSmiles.Services
             _hostEnvironment = hostEnvironment;
             _config = config;
         }
-        public bool SendEmail(EmailType emailType, string UserID, string toEmail, int? patientId = null,int? docId = null, string userName = null)
+        public bool SendEmail(EmailType emailType,Dictionary<string, object> config) // string UserID, string toEmail, int? patientId = null,int? docId = null, string userName = null)
         {
             string fileName = string.Empty;
             string subject = string.Empty;
             string forgottenContent = string.Empty;
+            var userId = config.GetValueOrDefault("UserID");
             switch (emailType)
             {
                 case EmailType.Activation:
@@ -38,12 +41,16 @@ namespace CogniSmiles.Services
                 case EmailType.ForogttenUserName:
                     fileName = "ForgottenCredentials.html";
                     subject = "Your Registered Username with CogniSmiles";
-                    forgottenContent =$"You Have requested to retrieve your username registered with Cognismiles Website. Your User Name is <b>{userName}</b>";
+                    forgottenContent =$"You Have requested to retrieve your username registered with Cognismiles Website. Your User Name is <b>{config.GetValueOrDefault("UserName")}</b>";
                     break;
                 case EmailType.ForogttenPassword:
                     fileName = "ForgottenCredentials.html";
                     subject = "Your Reset Password Link - CogniSmiles";
-                    forgottenContent = $"You Have requested to reset your password in Cognismiles Website. Your Unique link to reset your password is <a href=\"https://[DomainName]/Doctors/ResetCredentials?userId={UserID}\"> Reset Password </a>.";
+                    forgottenContent = $"You Have requested to reset your password in Cognismiles Website. Your Unique link to reset your password is <a href=\"https://[DomainName]/Doctors/ResetCredentials?userId={userId}\"> Reset Password </a>.";
+                    break;
+                case EmailType.CourseRegistration:
+                    fileName = "CourseRegistration.html";
+                    subject = "New Course Regisration with Payment";
                     break;
                 default:
                     break;
@@ -51,6 +58,7 @@ namespace CogniSmiles.Services
             
             // configure email data
             var emailConfig = _config.GetSection("EmailConfiguration");
+            var toEmail = string.Empty;
             string configToEmail = emailConfig.GetValue<string>("ToEmail");
             if (!string.IsNullOrEmpty(configToEmail))
                 toEmail = configToEmail;
@@ -66,15 +74,17 @@ namespace CogniSmiles.Services
 
             var filestream = new FileStream(fileContents.PhysicalPath, FileMode.Open, FileAccess.Read);
             var emailContents = new StreamReader(filestream).ReadToEnd();
-            if(UserID != null)
-                emailContents = emailContents.Replace("{{UserID}}", UserID);
+            
+            if (userId != null)
+                emailContents = emailContents.Replace("{{UserID}}", userId.ToString());
 
             var domainName = _config.GetValue<string>("DomainName");
             emailContents = emailContents.Replace("{{DomainName}}",domainName);
-
-            if(patientId != null)
+            var patientId = config.GetValueOrDefault("PatientID");
+            var docId = config.GetValueOrDefault("DoctorID");
+            if (patientId != null)
             {
-                var patient = _context.Patient.Where(p => p.Id == patientId).FirstOrDefault();
+                var patient = _context.Patient.Where(p => p.Id == Convert.ToInt32(patientId)).FirstOrDefault();
                 if (patient != null)
                 {
                     var doctorId = patient.DoctorId;
@@ -88,10 +98,23 @@ namespace CogniSmiles.Services
                     emailContents = emailContents.Replace("{{PatientID}}", patientId.ToString());
                 }
             }
+
+            var courseId = config.GetValueOrDefault("CourseID");
+            var cPayment = _context.CoursePayment.Where(cp =>cp.Id == Convert.ToInt32(courseId)).FirstOrDefault();
+            if (cPayment != null)
+            {
+                emailContents = emailContents.Replace("{{PayeeName}}", cPayment.PayerName);
+                emailContents = emailContents.Replace("{{PayeeEmail}}", cPayment.PayerEmail);
+                emailContents = emailContents.Replace("{{CourseName}}", cPayment.CourseName);
+                emailContents = emailContents.Replace("{{PaymentID}}", cPayment.PaymentID);
+                emailContents = emailContents.Replace("{{PaymentStatus}}", cPayment.PaymentStatus);
+            }
+
             forgottenContent = forgottenContent.Replace("[DomainName]", domainName);
             
             emailContents = emailContents.Replace("{{EmailSubject}}", subject);
             emailContents = emailContents.Replace("{{EmailContent}}", forgottenContent);
+
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(emailConfig.GetValue<string>("From")));
             email.To.Add(MailboxAddress.Parse(toEmail));
@@ -115,6 +138,7 @@ namespace CogniSmiles.Services
         Activation,
         Notification,
         ForogttenUserName,
-        ForogttenPassword
+        ForogttenPassword,
+        CourseRegistration
     }
 }

@@ -39,7 +39,15 @@ namespace CogniSmiles.Pages.Doctors
             DoctorEmail = doctor.Email;
 
             // send email to registered email address with activation instructions and activation link with userid
-            _emailService.SendEmail(Services.EmailType.Activation, login.UserId.ToString(), DoctorEmail);
+            var config = new Dictionary<string, object>()
+                    {
+                        {"ToEmail",DoctorEmail },
+                        {"UserID", login.UserId.ToString()}
+                    };
+
+            _emailService.SendEmail(Services.EmailType.Activation, config);
+
+            //_emailService.SendEmail(Services.EmailType.Activation, login.UserId.ToString(), DoctorEmail);
 
             return Page();
         }

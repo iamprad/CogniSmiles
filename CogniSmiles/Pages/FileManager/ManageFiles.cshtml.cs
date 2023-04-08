@@ -97,8 +97,14 @@ namespace CogniSmiles.Pages.FileManager
                         //Get Doctor Email
                         docEmail = _context.Doctor.Where(d1 => d1.Id == DoctorId).Select(d => d.Email).FirstOrDefault(); ;
                     }
+                    var config = new Dictionary<string, object>()
+                    {
+                        {"ToEmail",docEmail },
+                        {"PatientID", Id},
+                        {"DoctorID",DoctorId }
+                    };
 
-                    if(_emailService.SendEmail(Services.EmailType.Notification, null, docEmail, Id, DoctorId))
+                    if (_emailService.SendEmail(Services.EmailType.Notification, config))
                     {
                         ViewData["UploadStatus"] += "Notification Sent via email";
                     }

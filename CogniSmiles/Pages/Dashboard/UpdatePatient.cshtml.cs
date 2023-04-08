@@ -72,7 +72,13 @@ namespace CogniSmiles.Pages.Dashboard
                         docEmail = _context.Doctor.Where(d1 => d1.Id == Patient.DoctorId).Select(d => d.Email).FirstOrDefault(); ;                       
                     }
 
-                    _emailService.SendEmail(Services.EmailType.Notification, null, docEmail,Patient.Id);
+                    var config = new Dictionary<string, object>()
+                    {
+                        {"ToEmail",docEmail },
+                        {"PatientID", Patient.Id}
+                    };
+
+                    _emailService.SendEmail(Services.EmailType.Notification, config);
                     
                 }
                 await _context.SaveChangesAsync();
