@@ -84,14 +84,14 @@ table {
             font-weight: bold;
             color: #565553;
         }
-            .signup_form td div input[type=submit], .add_cmts .form-group input[type=submit] {
+            .signup_form td div input[type=submit], .add_cmts .form-group input[type=submit], .btn-paynow {
                 margin-top: 20px;
                 height: 40px;
                 border-radius: 0px;
                 width: 150px;
                 font-weight: bold;
             }
-                .signup_form td div input[type=submit]:hover, .add_cmts .form-group input[type=submit]:hover {
+                .signup_form td div input[type=submit]:hover, .add_cmts .form-group input[type=submit]:hover, .btn-paynow:hover {
                     background-color: white;
                     color: #0d6efd;
                 }
@@ -284,17 +284,22 @@ div.patient_links {
         border:0px;
     }
 
-.course_date {
+.course{
     margin: 10px auto 10px auto;
-    width: 600px;
     display: block;
-    font-size:16px;
+    width:800px;
+    font-size: 16px;
 }
-    .course_date tr td {
-        height: 30px;
-        border: 2px solid #CE4D30;
-        padding: 5px;
-    }
+.course_date{
+    width:600px;
+}
+
+.course tr td {
+    height: 30px;
+    border: 2px solid #CE4D30;
+    padding: 5px;
+    vertical-align: top;
+}
     .course_date tr td:first-child {
         width: 30%;
         font-weight:bold;
@@ -302,3 +307,28 @@ div.patient_links {
     .course_date tr td:last-child {
         width: 70%;
     }
+.course_speakers tr td{
+    width:50%;
+}
+.course_speakers .cs_header, .course_details tr td[colspan="2"] {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding:10px;
+}
+
+.speaker .name {
+    display: block;
+    font-weight: bold;
+    font-size: 20px;
+}
+.d1-time, .d2-time{
+    width:15%;
+}
+.d1-topic, .d2-topic{
+    width:35%;
+}
+.btn-paynow{
+    margin: 10px auto;
+    display:block;
+}
