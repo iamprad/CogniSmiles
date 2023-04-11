@@ -26,7 +26,10 @@ namespace CogniSmiles.Services
             // Use OAuthTokenCredential to request an access token from PayPal
             var accessToken = new OAuthTokenCredential(paypalconfig).GetAccessToken();
 
-            _apiContext = new APIContext(accessToken);
+            _apiContext = new APIContext(accessToken)
+            {
+                Config = paypalconfig
+            };
 
         }
 
@@ -66,7 +69,24 @@ namespace CogniSmiles.Services
                 new Transaction()
                 {
                     description = coursePayment.CourseName,
-                    amount = amount
+                    amount = amount,
+                    payment_options = new PaymentOptions()
+                    {
+                        allowed_payment_method="INSTANT_FUNDING_SOURCE"
+                    },
+                    item_list = new ItemList()
+                    {
+                        items = new List<Item>(){
+                            new Item()
+                            {
+                                name = coursePayment.CourseName,
+                                description = coursePayment.CourseName,
+                                quantity = "1",
+                                price = coursePayment.CourseFee.ToString(),
+                                currency = "GBP",
+                            }
+                        } 
+                    }
                 }
             };
 
@@ -77,9 +97,9 @@ namespace CogniSmiles.Services
                 intent = "order",
                 payer = payer,
                 transactions = transactionList,
-                redirect_urls = redirUrls
+                redirect_urls = redirUrls                
             };
-
+            
             var createdPayment = payment.Create(_apiContext);
 
             coursePayment.PaymentID = createdPayment.id;
