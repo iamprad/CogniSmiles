@@ -275,14 +275,21 @@ div.patient_links {
         padding:10px;
         font-size:20px;
     }
-    .sl_course a {
-        border-radius: 0px;
+    .sl_course .course_btn {
+       
         position: absolute;
         bottom: 10%;
-        left: 37%;
-        background-color: #CE4D30;
-        border:0px;
+        left: 22%;
     }
+        .sl_course .course_btn a {
+            background-color: #CE4D30;
+            border: 0px;
+            border-radius: 0px;
+            margin-right:10px;
+        }
+            .sl_course .course_btn a:last-child {
+                background-color: #565553;
+            }
 
 .course{
     margin: 10px auto 10px auto;
@@ -307,8 +314,16 @@ div.patient_links {
     .course_date tr td:last-child {
         width: 70%;
     }
-.course_speakers tr td{
-    width:50%;
+.course_speakers tr td[colspan="2"] {
+    border: 2px solid #CE4D30 !important;
+}
+.course_speakers tr td:first-child {
+    width: 50%;
+    border-right: none;
+}
+.course_speakers tr td:last-child {
+    width: 50%;
+    border-left:none;
 }
 .course_speakers .cs_header, .course_details tr td[colspan="2"] {
     text-align: center;

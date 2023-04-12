@@ -18,6 +18,14 @@ namespace CogniSmiles.Pages.Courses
         }
         public IActionResult OnPost() 
         {
+            return BookYourCourse();
+        }
+        public IActionResult OnGetBookCourse()
+        {
+            return BookYourCourse();
+        }
+        public IActionResult BookYourCourse()
+        {
             var guid = Convert.ToString((new Random()).Next(100000));
 
             var paymentReg = _paymentService.RegisterPayment(guid);
@@ -25,8 +33,6 @@ namespace CogniSmiles.Pages.Courses
             PageContext.HttpContext.Session.SetString(guid, paymentReg.Item1);
 
             return Redirect(paymentReg.Item2);
-            
-
         }
     }
 }

@@ -23,11 +23,14 @@
 
             London, N8 7PY <br /> <br />
 
-            <b>Course fee:</b>  &pound;1650 <br /> <br />
+            <b>Course fee:</b>  &pound;1650.00 <br /> <br />
 
             <b> Online booking now open </b>
         </p>
-        <a class="btn btn-primary btn-lg" asp-page="/Courses/Register">More Details</a>
+        <div class="course_btn">
+            <a class="btn btn-primary btn-lg" asp-page="/Courses/Register" asp-page-handler="BookCourse">Book Your Course</a>
+            <a class="btn btn-primary btn-lg" asp-page="/Courses/Register">More Details</a>
+        </div>
     </div>
 </div>
   
