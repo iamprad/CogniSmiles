@@ -227,123 +227,239 @@ div.patient_links {
     color: #565553;
     padding: 5px;
 }
-.homePage_bg {
-    background-image: url('../images/cognismiles_bg.jpg');
-    background-size: contain;
-    height: 600px;  
-    padding:15px;
-}
-.homeButtons{
-    padding: 10px;
-    position: relative;
-    float: right;
-}
-    .homeButtons a, .sinusLift_bg a {
-        margin-left: 15px;
-        border-radius: 0px;
+@media (min-width: 300px) {
+    .homePage_bg {
+        background-image: url('../images/cognismiles_bg.jpg');
+        background-size: contain;
+        height: 200px;
+        padding: 5px;
     }
-.sinusLift_bg {
-    background-image: url('../images/sinus_lift_course1.jpeg');
-    background-size: contain;
-    width: 48%;
-    height: 500px;
-    padding: 15px;
-    text-align: center;
-    display: inline-block;
-}
-.sinusLift_course {
-    position: relative;
-    display: flex;
-}
-.sl_course {
-    width: 48%;
-    padding: 15px;
-    text-align: center;
-    display: inline-block;
-    height:500px;
-    position:relative;
-}
-    .sl_course .course_title {
-        font-size: 24px;
-        vertical-align: top;
-        font-weight:bold;
+
+    .homeButtons {
+        padding: 5px;
+        position: relative;
+        float: right;
     }
-    .sl_course .course_desc{
-        margin-top:25px;
-        text-align:center;
-        height:300px;
-        padding:10px;
-        font-size:20px;
-    }
-    .sl_course .course_btn {
-       
-        position: absolute;
-        bottom: 10%;
-        left: 22%;
-    }
-        .sl_course .course_btn a {
-            background-color: #CE4D30;
-            border: 0px;
+
+        .homeButtons a, .sinusLift_bg a {
+            margin-left: 15px;
             border-radius: 0px;
-            margin-right:10px;
+            font-size:12px;
         }
-            .sl_course .course_btn a:last-child {
-                background-color: #565553;
+
+    .sinusLift_bg {
+        background-image: url('../images/sinus_lift_course1.jpeg');
+        background-size: contain;
+        width: 48%;
+        height: 200px;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    .sinusLift_course {
+        position: relative;
+        display: flex;
+    }
+
+    .sl_course {
+        width: 48%;
+        padding: 5px;
+        text-align: center;
+        display: inline-block;
+        height: 200px;
+        position: relative;
+        font-size: 14px;
+    }
+
+        .sl_course .course_title {
+            vertical-align: top;
+            font-weight: bold;
+        }
+
+        .sl_course .course_desc {
+            margin-top: 5px;
+            text-align: center;
+            height: 30px;
+            padding: 10px;
+            font-size: 10px;
+            overflow: hidden;
+        }
+
+        .sl_course .course_btn {
+            position: absolute;
+            bottom: 0%;
+            left: 22%;
+        }
+
+            .sl_course .course_btn a {
+                background-color: #CE4D30;
+                font-size: 12px;
+                border: 0px;
+                border-radius: 0px;
+                margin-right: 5px;
+                margin-top: 5px;
             }
 
-.course{
-    margin: 10px auto 10px auto;
-    display: block;
-    width:800px;
-    font-size: 16px;
+                .sl_course .course_btn a:last-child {
+                    background-color: #565553;
+                }
 }
-.course_date{
-    width:600px;
-}
+@media (min-width: 800px) {
+    .sl_course {
+        font-size:18px !important;
+    }
 
-.course tr td {
-    height: 30px;
-    border: 2px solid #CE4D30;
-    padding: 5px;
-    vertical-align: top;
+        .sl_course .course_desc {
+        margin-top: 25px;
+        text-align: center;
+        height: 70px;
+        padding: 10px;
+        font-size: 20px;
+        overflow:hidden;
+    }
 }
+    @media (min-width: 1200px) {
+        .homePage_bg {
+            background-image: url('../images/cognismiles_bg.jpg');
+            background-size: contain;
+            height: 500px;
+            padding: 15px;
+        }
+
+        .homeButtons {
+            padding: 10px;
+            position: relative;
+            float: right;
+        }
+
+            .homeButtons a, .sinusLift_bg a {
+                margin-left: 15px;
+                border-radius: 0px;
+                font-size: 16px;
+            }
+
+        .sinusLift_bg {
+            background-image: url('../images/sinus_lift_course1.jpeg');
+            background-size: contain;
+            width: 48%;
+            height: 500px;
+            padding: 15px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .sinusLift_course {
+            position: relative;
+            display: flex;
+        }
+
+        .sl_course {
+            width: 48%;
+            padding: 15px;
+            text-align: center;
+            display: inline-block;
+            height: 500px;
+            position: relative;
+        }
+
+            .sl_course .course_title {
+                font-size: 24px;
+                vertical-align: top;
+                font-weight: bold;
+            }
+
+            .sl_course .course_desc {
+                margin-top: 25px;
+                text-align: center;
+                height: 220px;
+                padding: 10px;
+                font-size: 20px;
+                overflow:visible;
+            }
+
+            .sl_course .course_btn {
+                position: absolute;
+                bottom: 10%;
+                left: 27%;
+            }
+
+                .sl_course .course_btn a {
+                    background-color: #CE4D30;
+                    font-size: 16px;
+                    border: 0px;
+                    border-radius: 0px;
+                    margin-right: 10px;
+                }
+
+                    .sl_course .course_btn a:last-child {
+                        background-color: #565553;
+                    }
+    }
+
+    .course {
+        margin: 10px auto 10px auto;
+        display: block;
+        width: 800px;
+        font-size: 16px;
+    }
+
+    .course_date {
+        width: 600px;
+    }
+
+    .course tr td {
+        height: 30px;
+        border: 2px solid #CE4D30;
+        padding: 5px;
+        vertical-align: top;
+    }
+
     .course_date tr td:first-child {
         width: 30%;
-        font-weight:bold;
+        font-weight: bold;
     }
+
     .course_date tr td:last-child {
         width: 70%;
     }
-.course_speakers tr td[colspan="2"] {
-    border: 2px solid #CE4D30 !important;
-}
-.course_speakers tr td:first-child {
-    width: 50%;
-    border-right: none;
-}
-.course_speakers tr td:last-child {
-    width: 50%;
-    border-left:none;
-}
-.course_speakers .cs_header, .course_details tr td[colspan="2"] {
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    padding:10px;
-}
 
-.speaker .name {
-    display: block;
-    font-weight: bold;
-    font-size: 20px;
-}
-.d1-time, .d2-time{
-    width:15%;
-}
-.d1-topic, .d2-topic{
-    width:35%;
-}
-.btn-paynow{
-    margin: 10px auto;
-    display:block;
-}
+    .course_speakers tr td[colspan="2"] {
+        border: 2px solid #CE4D30 !important;
+    }
+
+    .course_speakers tr td:first-child {
+        width: 50%;
+        border-right: none;
+    }
+
+    .course_speakers tr td:last-child {
+        width: 50%;
+        border-left: none;
+    }
+
+    .course_speakers .cs_header, .course_details tr td[colspan="2"] {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .speaker .name {
+        display: block;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .d1-time, .d2-time {
+        width: 15%;
+    }
+
+    .d1-topic, .d2-topic {
+        width: 35%;
+    }
+
+    .btn-paynow {
+        margin: 10px auto;
+        display: block;
+    }
