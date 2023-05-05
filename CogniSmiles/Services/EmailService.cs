@@ -113,7 +113,7 @@ namespace CogniSmiles.Services
                 emailContents = emailContents.Replace("{{PayeeName}}", cPayment.PayerName);
                 emailContents = emailContents.Replace("{{PayeeEmail}}", cPayment.PayerEmail);
                 emailContents = emailContents.Replace("{{CourseName}}", cPayment.CourseName);
-                emailContents = emailContents.Replace("{{PaymentID}}", cPayment.PaymentID);
+                emailContents = emailContents.Replace("{{PaymentId}}", cPayment.PaymentID);
                 emailContents = emailContents.Replace("{{PaymentStatus}}", cPayment.PaymentStatus);
             }
 
