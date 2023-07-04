@@ -45,15 +45,14 @@ table {
     position: relative;
 }
 .patientSearch {
-    width: 500px;
+    width: 800px;
 }
-    .patientSearch input[type=submit] {
-        
+    .patientSearch input[type=submit], .bulkAction input[type=submit] {
         height: 40px;
         border-radius: 0px;
         width: 150px;
-        margin:10px auto;
-        display:block;
+        margin: 10px auto;
+        display: block;
     }
 .table-login {
     margin: 10px auto 10px auto;

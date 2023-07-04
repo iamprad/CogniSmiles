@@ -24,6 +24,7 @@ namespace CogniSmiles.Models
         [Display(Name = "Patient Status")]
         public PatientStatus PatientStatus { get; set; }
         public string? Comments { get; set; }
+        public bool IsArchived { get; internal set; }
     }
     public enum PatientStatus
     {

@@ -17,6 +17,11 @@
                 <h5> Search Patient by Patient code or Registered Practice  or Dentist Name </h5>
             </td>
         </tr>
+        <tr>
+            <td colspan="2">
+                <b> (Only shows Top 10 Patients starting from latest) </b>
+            </td>
+        </tr>
         <tr>        
             <td>
                 <div class="form-group">
@@ -28,18 +33,32 @@
         <tr>
             <td colspan="2">
                 <div class="form-group">
-                    <input type="submit" value="Search" class="btn btn-primary" />
+                    <input type="submit" value="Search" class="btn btn-primary" asp-page="Home" asp-page-handler="Search" />
                 </div>
             </td>
         </tr>
+            
     </table>
-</form>
+    <table class="bulkAction">
+        <tr>
+            <td style="float:left;">
+                <input type="submit" value="Archive" class="btn btn-secondary" asp-page="Home" asp-page-handler="Archive" onclick="return confirm('Records will be archived permenently. Are you sure?')" />
+            </td>
+            <td style="float:left;">
+                <input type="submit" value="Delete" class="btn btn-primary" asp-page="Home" asp-page-handler="Delete" onclick="return confirm('Records will be deleted from system permenently. Are you sure?')" />
+            </td>
+        </tr>
+    </table>
+
 <h1>List of Patient Records</h1>
 @if (Model.PatientList.Any())
 {
     <table class="table">
         <thead>
             <tr>
+                <th>
+                    Select
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PatientList[0].PatientCode)
                 </th>
@@ -71,44 +90,48 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.PatientList)
+                @for (var i = 0; i < Model.PatientList.Count(); i++)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PatientCode)
+                            @Html.HiddenFor(modelitem => Model.PatientList[i].Id)
+                            @Html.CheckBoxFor(modelitem => Model.PatientList[i].Selected)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DentistName)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].PatientCode)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PracticeName)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].DentistName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SurgicalGuideReturnDate)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].PracticeName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImplantSite)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].SurgicalGuideReturnDate)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImplantSystem)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].ImplantSite)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImplantDiameter)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].ImplantSystem)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImplantLength)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].ImplantDiameter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].ImplantLength)
                     </td>
                     <th>
-                        @Html.DisplayFor(modelItem => item.PatientStatus)
+                        @Html.DisplayFor(modelItem => Model.PatientList[i].PatientStatus)
                     </th>
                     <td class="patient_links">
                         @if (Model.IsAdmin)
                         {
-                            <a asp-page="./TransferPatient" asp-route-id="@item.Id">Transfer Patient </a>
+                            <a asp-page="./TransferPatient" asp-route-id="@Model.PatientList[i].Id">Transfer Patient </a>
                         }
-                        <a asp-page="./PatientComment" asp-route-id="@item.Id">Dentist Comments </a>
-                        <a asp-page="../FileManager/ManageFiles" asp-route-id="@item.Id">View / Upload Files</a>
-                        <a asp-page="./DeletePatient" asp-route-id="@item.Id">Delete Patient</a>
+                        <a asp-page="./PatientComment" asp-route-id="@Model.PatientList[i].Id">Dentist Comments </a>
+                        <a asp-page="../FileManager/ManageFiles" asp-route-id="@Model.PatientList[i].Id">View / Upload Files</a>
+                        @*<a asp-page="./DeletePatient" asp-route-id="@Model.PatientList[i].Id">Delete Patient</a>*@
                     </td>
                 </tr>
             }
@@ -119,3 +142,4 @@ else
 {
     <span class="noRecords"> No Patient Records Found </span>
 }
+</form>
