@@ -93,7 +93,7 @@ namespace CogniSmiles.Pages.Dashboard
             ClearSession();
             return RedirectToPage("../Index");
         }
-        private void PopulatePatientList(int limit = 10)
+        private void PopulatePatientList(int limit = 25)
         {
 
             var patientData = (from patient in _context.Set<Patient>().Where(p => p.IsArchived == false)
