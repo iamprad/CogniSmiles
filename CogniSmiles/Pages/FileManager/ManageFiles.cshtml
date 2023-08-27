@@ -5,7 +5,7 @@
     ViewData["Title"] = "View / Upload Files Patient Record";
 }
 
-<h1>View Files for Patient Record </h1>
+<h1>View Files for Patient @Model.PatientName </h1>
 @if (Model.PatientFiless.Count > 0)
 {
     <table class="tbl_files">
@@ -58,7 +58,7 @@ else
     </div>    
 }
 
-<h1>Upload Files for Patient Record </h1>
+<h1>Upload Files for Patient @Model.PatientName </h1>
 <form method ="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="Id" />
     <table class="tbl_upload">
@@ -70,6 +70,10 @@ else
                     <label class="radio_button">
                         <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.Plan" checked="checked" />
                         Implant Plan
+                    </label>
+                    <label class="radio_button">
+                        <input type="radio" asp-for="NewPatientFile.FileType" value="@FileType.SurgicalGuide" checked="checked" />
+                        Surgical Guide
                     </label>
                 }
             
@@ -111,7 +115,7 @@ else
                         Amend Plan
                     </label>
                     <label class="radio_button">
-                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.Approve" />
+                        <input type="radio" asp-for="@Model.PatientStatus" value="@PatientStatus.Approved" />
                         Approve Plan
                     </label>
                 }

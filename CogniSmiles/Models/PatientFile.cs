@@ -20,6 +20,7 @@ namespace CogniSmiles.Models
     {
         DICOMFile = 0,
         STLFile = 1,
-        Plan = 2
+        Plan = 2,
+        SurgicalGuide = 3
     }
 }

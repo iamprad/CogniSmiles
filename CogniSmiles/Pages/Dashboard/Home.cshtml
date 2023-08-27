@@ -1,25 +1,36 @@
 ﻿@page
 @model CogniSmiles.Pages.Dashboard.HomeModel
 
-<div class="dashboard_links">
-    <a asp-page="./NewPatient">Add New Patient Record</a>
-    @if (Model.IsAdmin)
-    {
-        <a asp-page="../Doctors/Index">List of Doctors</a>
-    }
-</div>
 
+<form method="post">
+    <div class="dashboard_links">
+        <a asp-page="./NewPatient">Add New Patient Record</a>
+        @if (Model.IsAdmin)
+        {
+            <a asp-page="../Doctors/Index">List of Doctors</a>
+        
+        }
+        <a asp-page="./Home" asp-page-handler="ArchivedList">Archived List</a>
+    </div>
 
- <form method="post">
     <table class="patientSearch">
+        
         <tr>
             <td colspan="2">
-                <h5> Search Patient by Patient code or Registered Practice  or Dentist Name </h5>
+                @if(Model.IsArchivedList)
+                {
+                    <h5>[ARCHIVED LIST] Search Patient by Patient code or Registered Practice or Dentist Name </h5>
+                }
+                else
+                {
+                    <h5> Search Patient by Patient code or Registered Practice or Dentist Name </h5>
+                }
+               
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <b> (Only shows Top 10 Patients starting from latest) </b>
+                <b> (Only shows Top 25 Patients starting from latest) </b>
             </td>
         </tr>
         <tr>        
@@ -28,7 +39,7 @@
                    
                     <input asp-for="PatientSearchTerm" class="form-control" />
                 </div>
-            </td>           
+            </td>
         </tr>
         <tr>
             <td colspan="2">
@@ -125,10 +136,10 @@
                         @Html.DisplayFor(modelItem => Model.PatientList[i].PatientStatus)
                     </th>
                     <td class="patient_links">
-                        @if (Model.IsAdmin)
+                        @*@if (Model.IsAdmin)
                         {
                             <a asp-page="./TransferPatient" asp-route-id="@Model.PatientList[i].Id">Transfer Patient </a>
-                        }
+                        }*@
                         <a asp-page="./PatientComment" asp-route-id="@Model.PatientList[i].Id">Dentist Comments </a>
                         <a asp-page="../FileManager/ManageFiles" asp-route-id="@Model.PatientList[i].Id">View / Upload Files</a>
                         @*<a asp-page="./DeletePatient" asp-route-id="@Model.PatientList[i].Id">Delete Patient</a>*@

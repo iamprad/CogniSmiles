@@ -111,12 +111,30 @@ table {
     margin-bottom: 5px;
     padding: 5px;
 }
+.dashboard_links input[type=submit] {
+    width: 180px;
+    border-width: 1px !important;
+    border-color: #CE4D30;
+    text-align: center;
+    border-style: solid;
+    background-color: #CE4D30;
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+    padding: 5px;
+    float: right;
+    height: 40px;
+}
+    .dashboard_links input[type=submit]:hover {
+        background-color: white;
+        color: #CE4D30;
+    }
     .patient_links a:hover, .dashboard_links a:hover, .tbl_files tr td a:hover {
         background-color: white;
         color: #CE4D30;
     }
 div.dashboard_links{
-    width:400px;
+    width:560px;
     display:block;
     margin:10px 0px;
     height:50px;

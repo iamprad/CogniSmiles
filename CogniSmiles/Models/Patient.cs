@@ -42,7 +42,7 @@ namespace CogniSmiles.Models
         ApprovePlan = 5,
         [Display(Name = "Guide Posted")]
         GuidePosted = 6,
-        [Display(Name = "Approve")]
-        Approve = 7
+        [Display(Name = "Approved")]
+        Approved = 7
     }
 }

@@ -1,6 +1,9 @@
 using CogniSmiles.Data;
 using CogniSmiles.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CogniSmiles.Pages.Dashboard
@@ -8,16 +11,19 @@ namespace CogniSmiles.Pages.Dashboard
     public class HomeModel : AuthModel
     {
         private readonly CogniSmilesContext _context;
-
+        
         [BindProperty]
         public List<PatientData> PatientList { get; set; }
 
-        [BindProperty]
-       
+        [BindProperty]       
         public string PatientSearchTerm { get; set; }
+
+        [BindProperty]
+        public bool IsArchivedList { get; set; }
         public HomeModel(CogniSmilesContext context)
         {
             _context = context;
+           
         }
         public async Task<ActionResult> OnGetAsync()
         {
@@ -26,12 +32,20 @@ namespace CogniSmiles.Pages.Dashboard
 
             else if (IsAuthenticated && DoctorId > 0)
             {
+               
+                IsArchivedList = false;
                 PopulatePatientList();
             }
             return Page();
         }
         public async Task<IActionResult> OnPostSearchAsync()
         {            
+            PopulatePatientList();
+            return Page();
+        }
+        public async Task<IActionResult> OnGetArchivedListAsync()
+        {
+            IsArchivedList = true;
             PopulatePatientList();
             return Page();
         }
@@ -96,7 +110,7 @@ namespace CogniSmiles.Pages.Dashboard
         private void PopulatePatientList(int limit = 25)
         {
 
-            var patientData = (from patient in _context.Set<Patient>().Where(p => p.IsArchived == false)
+            var patientData = (from patient in _context.Set<Patient>().Where(p => p.IsArchived == IsArchivedList)
                                join doctor in _context.Set<Doctor>()
                                    on patient.DoctorId equals doctor.Id 
                                orderby patient.Id descending

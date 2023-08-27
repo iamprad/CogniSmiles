@@ -23,6 +23,8 @@ namespace CogniSmiles.Pages.FileManager
         [BindProperty]
         public string PostedComment { get; set; }
 
+        public string PatientName { get; set; }
+
         public ManageFilesModel(CogniSmilesContext context, IFileUploadService fileUploadService, IEmailService emailService)
         {
             _context = context;
@@ -37,7 +39,8 @@ namespace CogniSmiles.Pages.FileManager
             // Authorize             
             if (!IsAuthenticated)
                 return RedirectToPage("../Doctors/Login");
-           
+
+            PatientName = await _context.Patient.Where(p1 => p1.Id == Id).Select(p => p.PatientCode).FirstOrDefaultAsync();
             PatientFiless = await _context.PatientFile.Where(file => file.PatientId == Id).ToListAsync();
             return Page();
         }
