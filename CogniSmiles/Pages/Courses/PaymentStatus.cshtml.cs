@@ -19,7 +19,8 @@ namespace CogniSmiles.Pages.Courses
 
             var config = new Dictionary<string, object>()
                     {
-                        {"PaymentStatus","Success" }
+                        {"PaymentStatus","Success" },
+                        {"ToEmail", "info@rosebroughdentalpractice.co.uk" }
                     };
             _emailService.SendEmail(Services.EmailType.CourseRegistration, config);
             PaymentStatus = true;
@@ -29,7 +30,8 @@ namespace CogniSmiles.Pages.Courses
         {
             var config = new Dictionary<string, object>()
                     {
-                        {"PaymentStatus","Failed" }
+                        {"PaymentStatus","Failed" },
+                        {"ToEmail", "info@rosebroughdentalpractice.co.uk" }
                     };
             _emailService.SendEmail(Services.EmailType.CourseRegistration, config);
             PaymentStatus = false;
