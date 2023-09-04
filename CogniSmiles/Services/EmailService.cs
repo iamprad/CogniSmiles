@@ -22,7 +22,7 @@ namespace CogniSmiles.Services
             _hostEnvironment = hostEnvironment;
             _config = config;
         }
-        public bool SendEmail(EmailType emailType,Dictionary<string, object> config) // string UserID, string toEmail, int? patientId = null,int? docId = null, string userName = null)
+        public bool SendEmail(EmailType emailType, Dictionary<string, object> config) // string UserID, string toEmail, int? patientId = null,int? docId = null, string userName = null)
         {
             string fileName = string.Empty;
             string subject = string.Empty;
@@ -41,7 +41,7 @@ namespace CogniSmiles.Services
                 case EmailType.ForogttenUserName:
                     fileName = "ForgottenCredentials.html";
                     subject = "Your Registered Username with CogniSmiles";
-                    forgottenContent =$"You Have requested to retrieve your username registered with Cognismiles Website. Your User Name is <b>{config.GetValueOrDefault("UserName")}</b>";
+                    forgottenContent = $"You Have requested to retrieve your username registered with Cognismiles Website. Your User Name is <b>{config.GetValueOrDefault("UserName")}</b>";
                     break;
                 case EmailType.ForogttenPassword:
                     fileName = "ForgottenCredentials.html";
@@ -55,40 +55,40 @@ namespace CogniSmiles.Services
                 default:
                     break;
             }
-            
+
             // configure email data
             var emailConfig = _config.GetSection("EmailConfiguration");
 
             var toEmail = config.GetValueOrDefault("ToEmail");
-            
+
             var docId = config.GetValueOrDefault("DoctorID");
 
             if (string.IsNullOrEmpty(toEmail?.ToString()))
-                toEmail = _context.Doctor.Where(d1 => d1.Id == Convert.ToInt32(docId)).Select(d => d.Email).FirstOrDefault(); 
+                toEmail = _context.Doctor.Where(d1 => d1.Id == Convert.ToInt32(docId)).Select(d => d.Email).FirstOrDefault();
 
             string configToEmail = emailConfig.GetValue<string>("ToEmail");
             if (!string.IsNullOrEmpty(configToEmail))
                 toEmail = configToEmail;
             // get email template
             var fileProvider = new PhysicalFileProvider(_hostEnvironment.WebRootPath);
-            var filePath = Path.Combine("Email Templates",fileName);
+            var filePath = Path.Combine("Email Templates", fileName);
             var fileContents = fileProvider.GetFileInfo(filePath);
 
             if (!fileContents.Exists)
                 return false;
-            
+
             // replace in email contents
 
             var filestream = new FileStream(fileContents.PhysicalPath, FileMode.Open, FileAccess.Read);
             var emailContents = new StreamReader(filestream).ReadToEnd();
-            
+
             if (userId != null)
                 emailContents = emailContents.Replace("{{UserID}}", userId.ToString());
 
             var domainName = _config.GetValue<string>("DomainName");
-            emailContents = emailContents.Replace("{{DomainName}}",domainName);
+            emailContents = emailContents.Replace("{{DomainName}}", domainName);
             var patientId = config.GetValueOrDefault("PatientID");
-            
+
             if (patientId != null)
             {
                 var patient = _context.Patient.Where(p => p.Id == Convert.ToInt32(patientId)).FirstOrDefault();
@@ -96,7 +96,7 @@ namespace CogniSmiles.Services
                 {
                     var doctorId = patient.DoctorId;
                     if (docId != null)
-                        doctorId = (int) docId; 
+                        doctorId = (int)docId;
                     var doctor = _context.Doctor.Where(d => d.Id == doctorId).FirstOrDefault();
 
                     emailContents = emailContents.Replace("{{PatientCode}}", patient?.PatientCode);
@@ -106,17 +106,21 @@ namespace CogniSmiles.Services
                 }
             }
 
-            var courseId = config.GetValueOrDefault("CourseID");
-            var cPayment = _context.CoursePayment.Where(cp =>cp.Id == Convert.ToInt32(courseId)).FirstOrDefault();
-            if (cPayment != null)
+            var payStatus = config.GetValueOrDefault("PaymentStatus");
+            if (payStatus != null)
             {
-                emailContents = emailContents.Replace("{{PayeeName}}", cPayment.PayerName);
-                emailContents = emailContents.Replace("{{PayeeEmail}}", cPayment.PayerEmail);
-                emailContents = emailContents.Replace("{{CourseName}}", cPayment.CourseName);
-                emailContents = emailContents.Replace("{{PaymentId}}", cPayment.PaymentID);
-                emailContents = emailContents.Replace("{{PaymentStatus}}", cPayment.PaymentStatus);
+                subject += $" [{payStatus}]";
+                if (payStatus.ToString() == "Success")
+                {
+                    emailContents = emailContents.Replace("{{Message1}}", " New Payment has been received for the Course ");
+                    emailContents = emailContents.Replace("{{Message2}}", "Payee and Payment Details will be found in Stripe Dasbhoard");
+                }
+                else {
+                    emailContents = emailContents.Replace("{{Message1}}", " Payment Attempt is failed for the Course ");
+                    emailContents = emailContents.Replace("{{Message2}}", "Please verify Payee and Payment Details in Stripe Dasbhoard. Contact Payee if needed");
+                }            
             }
-
+            
             forgottenContent = forgottenContent.Replace("[DomainName]", domainName);
             
             emailContents = emailContents.Replace("{{EmailSubject}}", subject);

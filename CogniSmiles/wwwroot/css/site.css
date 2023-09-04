@@ -265,7 +265,7 @@ div.patient_links {
         }
 
     .sinusLift_bg {
-        background-image: url('../images/sinus_lift_course1.jpeg');
+        background-image: url('../images/Plan_for_Perfection.jpeg');
         background-size: contain;
         width: 48%;
         height: 200px;
@@ -357,9 +357,9 @@ div.patient_links {
             }
 
         .sinusLift_bg {
-            background-image: url('../images/sinus_lift_course1.jpeg');
+            background-image: url('../images/Plan_for_Perfection.png');
             background-size: contain;
-            width: 48%;
+            width: 36%;
             height: 500px;
             padding: 15px;
             text-align: center;
@@ -372,7 +372,7 @@ div.patient_links {
         }
 
         .sl_course {
-            width: 48%;
+            width: 64%;
             padding: 15px;
             text-align: center;
             display: inline-block;
@@ -398,7 +398,7 @@ div.patient_links {
             .sl_course .course_btn {
                 position: absolute;
                 bottom: 10%;
-                left: 27%;
+                left: 32%;
             }
 
                 .sl_course .course_btn a {

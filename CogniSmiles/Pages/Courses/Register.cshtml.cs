@@ -1,15 +1,17 @@
 using CogniSmiles.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Stripe;
+using Stripe.Checkout;
 
 namespace CogniSmiles.Pages.Courses
 {
     public class RegisterModel : PageModel
     {
-        private readonly IPaymentService _paymentService;
-        public RegisterModel(IPaymentService paymentService)
+        private readonly IConfiguration _config;
+        public RegisterModel(IConfiguration config)
         {
-            _paymentService = paymentService;            
+            _config = config;            
         }
 
         public void OnGet()
@@ -26,13 +28,32 @@ namespace CogniSmiles.Pages.Courses
         }
         public IActionResult BookYourCourse()
         {
-            var guid = Convert.ToString((new Random()).Next(100000));
+            var paymentConfig = _config.GetSection("StripeConfig");
+            // This is your test secret API key.
+            StripeConfiguration.ApiKey = paymentConfig.GetValue<string>("Publishable_Key"); 
+           
+            var domain = "https://"+ _config.GetValue<string>("DomainName"); 
 
-            var paymentReg = _paymentService.RegisterPayment(guid);
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>
+                {
+                  new SessionLineItemOptions
+                  {
+                      // Price ID of the Product Created in Stripe Dashboard  - TEST
+                    Price = paymentConfig.GetValue<string>("Product_PriceID"),
+                    Quantity = 1
+                  },
+                },
+                Mode = "payment",
+                SuccessUrl = domain + "/Courses/PaymentStatus?handler=Success",
+                CancelUrl = domain + "/Courses/PaymentStatus?handler=Failure",
+            };
+            var service = new SessionService();
+            Session session = service.Create(options);
 
-            PageContext.HttpContext.Session.SetString(guid, paymentReg.Item1);
-
-            return Redirect(paymentReg.Item2);
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
         }
     }
 }
