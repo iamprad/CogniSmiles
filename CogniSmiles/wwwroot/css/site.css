@@ -87,7 +87,7 @@ table {
                 margin-top: 20px;
                 height: 40px;
                 border-radius: 0px;
-                width: 150px;
+                width: 160px;
                 font-weight: bold;
             }
                 .signup_form td div input[type=submit]:hover, .add_cmts .form-group input[type=submit]:hover, .btn-paynow:hover {
@@ -265,7 +265,7 @@ div.patient_links {
         }
 
     .sinusLift_bg {
-        background-image: url('../images/Plan_for_Perfection.jpeg');
+        background-image: url('../images/Plan_for_Perfection.png');
         background-size: contain;
         width: 48%;
         height: 200px;
