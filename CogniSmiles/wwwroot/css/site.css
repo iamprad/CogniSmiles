@@ -39,6 +39,15 @@ h1{
     text-align:center;
     padding:10px;
 }
+h2 {
+    text-align: center;
+    padding: 10px;
+    color: #CE4D30;
+}
+h5 {
+    text-align: center;
+    color: #CE4D30;
+}
 table {
     margin: 10px auto 10px auto;
     display: block;
@@ -284,7 +293,6 @@ div.patient_links {
         padding: 5px;
         text-align: center;
         display: inline-block;
-        height: 200px;
         position: relative;
         font-size: 14px;
     }
@@ -365,7 +373,17 @@ div.patient_links {
             text-align: center;
             display: inline-block;
         }
-
+        .archived {
+            margin-top: 10px;
+            background-color: lightgray;
+            opacity: 0.5;
+        }
+            .archived .sl_course .course_btn a {
+                background-color: #CE4D30 !important;
+            }
+        .archived .sl_course .course_desc{
+            height:180px;
+        }
         .sinusLift_course {
             position: relative;
             display: flex;
@@ -413,24 +431,47 @@ div.patient_links {
                         background-color: #565553;
                     }
     }
-
+.courseinfo {
+    width: fit-content;
+}
     .course {
-        margin: 10px auto 10px auto;
-        display: block;
-        width: 800px;
+        border:none;
         font-size: 16px;
     }
-
+    .course tr td img{
+        height:310px;
+    }
+    .course tr td.buttons a{
+        border-radius:0px;
+    }
+        .course tr td.buttons a.book {
+            background-color: #CE4D30;
+            border-color: #CE4D30;
+        }
+            .course tr td.buttons a.book:hover {
+                color: #CE4D30;
+                background-color: white;
+            }
+            .course tr td.buttons a:hover {
+            color: #0d6efd;
+            background-color:white;
+        }
+    .course .title{
+        font-size:18px;
+        font-weight:bold;
+        text-align:center;
+    }
     .course_date {
         width: 600px;
     }
 
-    .course tr td {
-        height: 30px;
-        border: 2px solid #CE4D30;
-        padding: 5px;
-        vertical-align: top;
-    }
+.course tr td {
+    height: 30px;
+    border: 2px solid #CE4D30;
+    padding: 5px;
+    vertical-align: top;
+    text-align:center;
+}
 
     .course_date tr td:first-child {
         width: 30%;

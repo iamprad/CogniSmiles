@@ -9,32 +9,77 @@
         <a class="btn btn-secondary btn-lg" asp-page="/Doctors/Login">Dentist Login</a>
   </div>
 </div>
-<div class="sinusLift_course">
-    <div class="sinusLift_bg">
-      
-    </div>
-    <div class="sl_course">
-        <span class="course_title">
-            Plan For Perfection: Digital Implant Planning for Guided Surgery
-        </span>
-        <p class="course_desc">
+<div class="activeCourse">
+    <h2>Courses Offering Now</h2>
+    <table class="course courseinfo">
+        <tr>
+            <td colspan="3" class="title">
+                <h4>Plan for Perfection: A comprehensive hands-on Sinus Lift Course on Cadavers </h4>
+            </td>
+        </tr>
+        <tr class="images">
+            <td class="first"><img src="~/images/External_SL_1_Small.jpg" /></td>
+            <td class="second"><img src="~/images/External_SL_2_small.jpg" /></td>
+            <td class="third"><img src="~/images/External_SL_3_Small.jpg" /></td>
+        </tr>
+        <tr>
+            <td class="dates">
+                <h5>Course Dates</h5>
+                <p>13th June 2024 & 14th June 2024  </p>
+                <h5>Number of attendees:</h5> 
+                <p>Maximum 20 </p>
+                
+            </td>
+            <td class="venue">
+                <h5>Course Fee</h5>
+                <p>&pound; 2900.00 VAT included</p>
+                <h5>Course Location</h5> 
+                <p>
+                    University Hospitals Coventry and Warwickshire <br />
+                    Clifford Bridge Road <br />
+                    Coventry CV2 2DX
+                </p>
+            </td>
+            <td class="buttons">
+                <br/>
+                <br/>
+                <h3> Online booking now open </h3> 
+                <br/>
+                <br/>
+                <a class="btn btn-primary btn-lg book" asp-page="/Courses/Register" asp-page-handler="BookCourse">Book Your Course</a>
+                <a class="btn btn-primary btn-lg" asp-page="/Courses/Register">More Details</a>
+            </td>
+        </tr>
+    </table>
+</div>
+    
+<div class="pastCourses">
+    <h2>Courses Offered Recently</h2>
+    <div class="sinusLift_course archived">
+        <div class="sinusLift_bg">
+        </div>
+        <div class="sl_course">
+            
+            <h4>Plan For Perfection: Digital Implant Planning for Guided Surgery</h4>
+            
+            <p class="course_desc">
+                <br/>
+                <b>Date:</b> 19th Jan 2024 & 20th Jan 2024 <br />
+                <b>Number of attendees:</b> maximum 20 <br />
+                <b>Fee:</b> £ 850.00 VAT included <br /> <br /> <br/>
 
-            <b>Date:</b> 19th Jan 2024 & 20th Jan 2024 <br />
-            <b>Number of attendees:</b> maximum 20 <br />
-            <b>Fee:</b> £ 850.00 VAT included <br /> <br />
+                <b>Venue:</b> Smart Dental Care, Unit 5,Longstone <br />
 
-            <b>Venue:</b> Smart Dental Care, Unit 5,Longstone <br />
-
-            Manchester M22 5LB <br /> <br />
-
-            <b>Course fee:</b> &pound;850.00 <br /> <br />
-
-            <b> Online booking now open </b>
-        </p>
-        <div class="course_btn">
-            <a class="btn btn-primary btn-lg" asp-page="/Courses/Register" asp-page-handler="BookCourse">Book Your Course</a>
-            <a class="btn btn-primary btn-lg" asp-page="/Courses/Register">More Details</a>
+                Manchester M22 5LB <br /> <br />
+                <br/>
+                For more information please contact <b>Miss Lisa Story</b> on 07984379669 or <b>Mr Andrew Barker</b> on 07717159877 or email to <a href="mailto:guides@cognismiles.com">guides@CogniSmiles.com</a>. <br />
+            </p>
+           @* <div class="course_btn">
+               <a class="btn btn-primary btn-lg" asp-page="/Courses/Register" asp-page-handler="BookCourse">Book Your Course</a>
+                <a class="btn btn-primary btn-lg" asp-page="/Courses/Archived/Course1">More Details</a>
+            </div>*@
         </div>
     </div>
 </div>
+
   
