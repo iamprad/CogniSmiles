@@ -260,7 +260,18 @@ div.patient_links {
         height: 200px;
         padding: 5px;
     }
-
+    .sl_course h4 {
+        font-size: 12px !important;
+    }
+    .course tr td h5 {
+        font-size: 16px !important;
+    }
+    .course tr td p {
+        font-size: 14px !important;
+    }
+    .course tr td img {
+        height: 100px !important;
+    }
     .homeButtons {
         padding: 5px;
         position: relative;
@@ -334,6 +345,29 @@ div.patient_links {
     .sl_course {
         font-size:18px !important;
     }
+    .course tr td img {
+        height: 180px !important;
+    }
+    .sl_course h4 {
+        font-size: 24px !important;
+    }
+
+    .course tr td h5 {
+        font-size: 22px !important;
+    }
+
+    .course tr td p {
+        font-size: 18px !important;
+    }
+    .sinusLift_bg {
+        background-image: url('../images/Plan_for_Perfection.png');
+        background-size: contain;
+        width: 32%;
+        height: 280px;
+        padding: 15px;
+        text-align: center;
+        display: inline-block;
+    }
 
         .sl_course .course_desc {
         margin-top: 25px;
@@ -345,6 +379,9 @@ div.patient_links {
     }
 }
     @media (min-width: 1200px) {
+        .course tr td img {
+            height: 260px !important;
+        }
         .homePage_bg {
             background-image: url('../images/cognismiles_bg.jpg');
             background-size: contain;
@@ -373,17 +410,7 @@ div.patient_links {
             text-align: center;
             display: inline-block;
         }
-        .archived {
-            margin-top: 10px;
-            background-color: lightgray;
-            opacity: 0.5;
-        }
-            .archived .sl_course .course_btn a {
-                background-color: #CE4D30 !important;
-            }
-        .archived .sl_course .course_desc{
-            height:180px;
-        }
+        
         .sinusLift_course {
             position: relative;
             display: flex;
@@ -438,11 +465,14 @@ div.patient_links {
         border:none;
         font-size: 16px;
     }
-    .course tr td img{
-        height:310px;
-    }
+        .course tr td img {
+            width: 100%;
+            height: 500%;
+        }
     .course tr td.buttons a{
         border-radius:0px;
+        margin-right:10px;
+        margin-bottom:10px;
     }
         .course tr td.buttons a.book {
             background-color: #CE4D30;
@@ -520,4 +550,13 @@ div.patient_links {
     .btn-paynow {
         margin: 10px auto;
         display: block;
+    }
+.archived {
+    margin-top: 10px;
+    background-color: lightgray;
+    opacity: 0.5;
+}
+
+    .archived .sl_course .course_desc {
+        height: 180px;
     }
